@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Atelier 22 — architectural 3D visualisation in Mauritius. Photoreal renders of villas, interiors and landscapes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Atelier 22 · 3D architectural visualisation, Mauritius">
+<meta property="og:description" content="Photoreal renders of villas, interiors and landscapes.">
+<meta property="og:url" content="https://atelier22ltd.com/">
+<meta property="og:image" content="https://atelier22ltd.com/export-assets/living.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo-ink-dark.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier 22 · 3D architectural visualisation, Mauritius</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--ground, #EDE7DD); color: var(--ink, #282420); overflow-x: clip; }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: #E85C24; }
+    :focus-visible { outline: 2px solid #E85C24; outline-offset: 3px; }
+    img { display: block; }
+    ::selection { background: #E85C24; color: #F6F4F0; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</helmet>
+<div style="font-family:'Space Mono',monospace; color:var(--ink,#282420);">
+  <nav aria-label="Chapters" style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px clamp(20px,4.5vw,64px); background:var(--ground,#EDE7DD); border-bottom:1px solid var(--line,rgba(40,36,32,0.16)); color:var(--ink,#282420);">
+    <a href="#top" aria-label="Atelier 22 · top of page" style="display:flex; align-items:center; gap:14px; flex:none;">
+      <span style="display:inline-block; position:relative;">
+        <img src="assets/logo-ink-dark.png" alt="Atelier 22 · architecture / 3D visualization" style="height:48px; width:auto; opacity:var(--logoA,1); transition:opacity 0.35s;">
+        <img src="assets/logo-ink-light.png" alt="" aria-hidden="true" style="position:absolute; top:0; left:0; height:48px; width:auto; opacity:var(--logoB,0); transition:opacity 0.35s;">
+      </span>
+      <span style="font-family:'Jost',sans-serif; font-weight:300; font-size:17px; letter-spacing:0.16em; text-transform:uppercase; white-space:nowrap;">Atelier <span style="color:#E85C24;">22</span></span>
+    </a>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;">
+      <a data-nav="studio" href="#studio">Studio</a>
+      <span onMouseEnter="{{ projEnter }}" onMouseLeave="{{ projLeave }}" style="position:relative; display:inline-block;">
+        <a data-nav="works" href="#works" onClick="{{ projToggle }}" aria-haspopup="true" aria-expanded="{{ projOpenStr }}" title="Project index">PROJECT<span aria-hidden="true" style="display:inline-block; margin-left:6px; font-size:8px; opacity:0.65;">▾</span></a>
+        <sc-if value="{{ projOpen }}" hint-placeholder-val="{{ false }}">
+          <span style="position:absolute; top:100%; right:-10px; padding-top:12px; display:block; z-index:70;">
+            <span style="display:block; min-width:320px; background:var(--ground,#EDE7DD); border:1px solid var(--line,rgba(40,36,32,0.16)); box-shadow:0 24px 60px rgba(30,26,22,0.22); padding:6px 0;">
+              <a href="#c01" onClick="{{ projGo }}" style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:13px 18px;" style-hover="background:rgba(232,92,36,0.07);">
+                <span style="font-weight:700;">Villa Mar Azul</span>
+                <span data-i18n="ddVilla" style="opacity:0.6; font-size:10.5px;">Private villa · Mauritius · 2026</span>
+              </a>
+              <a data-i18n="ddIndex" href="#works" onClick="{{ projGo }}" style="display:block; padding:12px 18px; border-top:1px solid var(--line,rgba(40,36,32,0.16)); opacity:0.66; font-size:10.5px;" style-hover="opacity:1;">Full index →</a>
+            </span>
+          </span>
+        </sc-if>
+      </span>
+      <a data-nav="services" href="#services">Services</a>
+      <a data-nav="contact" href="#contact">Contact</a>
+      <span style="display:flex; align-items:center; gap:10px; margin-left:4px; padding-left:14px; border-left:1px solid var(--line,rgba(40,36,32,0.16));">
+        <a data-lang-btn="en" href="#top" onClick="{{ pickLang }}" aria-label="English" style="font-weight:700;">EN</a>
+        <a data-lang-btn="fr" href="#top" onClick="{{ pickLang }}" aria-label="Français" style="font-weight:700; opacity:0.55;">FR</a>
+      </span>
+    </div>
+  </nav>
+
+  <section id="highlights" data-screen-label="Highlights" style="padding:0;">
+    <div style="position:relative; width:100%; aspect-ratio:16/9; max-height:100vh; overflow:hidden; background:#1E1A16;">
+      <video data-hl="0" src="export-assets/hl-approach.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp0 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="1" src="export-assets/hl-arrival.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp1 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="2" src="export-assets/hl-coffee.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp2 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="3" src="export-assets/hl-pool.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp3 }}; transition:opacity 0.8s;"></video>
+      <a href="#prev" onClick="{{ hlPrev }}" aria-label="Previous highlight" style="position:absolute; left:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0;" style-hover="opacity:1; background:linear-gradient(to right, rgba(20,17,14,0.35), rgba(20,17,14,0));">←</a>
+      <a href="#next" onClick="{{ hlNext }}" aria-label="Next highlight" style="position:absolute; right:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0;" style-hover="opacity:1; background:linear-gradient(to left, rgba(20,17,14,0.35), rgba(20,17,14,0));">→</a>
+      <div style="position:absolute; left:50%; bottom:22px; transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:10px; padding:9px 14px; background:rgba(20,17,14,0.42); backdrop-filter:blur(6px); border-radius:999px;">
+        <a href="#hl0" data-hlgo="0" onClick="{{ hlGo }}" aria-label="Highlight 1" style="display:block; width:{{ hlW0 }}; height:6px; border-radius:999px; background:{{ hlBg0 }}; transition:width 0.35s, background 0.35s;"></a>
+        <a href="#hl1" data-hlgo="1" onClick="{{ hlGo }}" aria-label="Highlight 2" style="display:block; width:{{ hlW1 }}; height:6px; border-radius:999px; background:{{ hlBg1 }}; transition:width 0.35s, background 0.35s;"></a>
+        <a href="#hl2" data-hlgo="2" onClick="{{ hlGo }}" aria-label="Highlight 3" style="display:block; width:{{ hlW2 }}; height:6px; border-radius:999px; background:{{ hlBg2 }}; transition:width 0.35s, background 0.35s;"></a>
+        <a href="#hl3" data-hlgo="3" onClick="{{ hlGo }}" aria-label="Highlight 4" style="display:block; width:{{ hlW3 }}; height:6px; border-radius:999px; background:{{ hlBg3 }}; transition:width 0.35s, background 0.35s;"></a>
+      </div>
+      <div style="position:absolute; left:clamp(20px,4.5vw,64px); bottom:22px; z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5);">
+        <p style="margin:0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.75;">
+          <span data-i18n="hl1" style="display:{{ hlD0 }};">Animation · exterior approach</span>
+          <span data-i18n="hl2" style="display:{{ hlD1 }};">Animation · arrival scene</span>
+          <span data-i18n="hl3" style="display:{{ hlD2 }};">Animation · interior scene</span>
+          <span data-i18n="hl4" style="display:{{ hlD3 }};">Animation · pool scene</span>
+        </p>
+      </div>
+      <span style="position:absolute; right:clamp(20px,4.5vw,64px); bottom:22px; z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5); font-size:13px; letter-spacing:0.14em; opacity:0.85;">{{ hlCounter }}</span>
+    </div>
+  </section>
+
+  <header id="top" data-screen-label="Opening" style="padding:56px 0 0;">
+    <p data-i18n="heroTag" style="margin:0 clamp(20px,4.5vw,64px) 2.5vh; font-size:13px; letter-spacing:0.22em; text-transform:uppercase;">3D visualisation studio · Mauritius</p>
+    <h1 aria-label="Atelier 22" style="margin:0; padding:0 clamp(20px,4.5vw,64px); font-family:'Jost',sans-serif; font-weight:200; letter-spacing:0.02em; line-height:1; font-size:clamp(2.6rem,9.5vw,11rem); white-space:nowrap;">ATELIER <span style="color:#DB5820;">22</span></h1>
+    <p data-i18n="heroPitch" style="margin:3.5vh clamp(20px,4.5vw,64px) 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:38em;">We craft photorealistic imagery for architects, developers and property professionals. Still images, animation, 3D models and presentation design, each made to show a project at its best</p>
+  </header>
+
+  <section id="studio" data-screen-label="Studio" style="padding:16vh clamp(20px,4.5vw,64px) 6vh; scroll-margin-top:72px;">
+    <div style="width:min(300px,38vw); height:1px; background:#E85C24;"></div>
+    <p data-i18n="studioEyebrow" style="margin:4.5vh 0 0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Atelier 22 Ltd · Mauritius</p>
+    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Studio</h2>
+    <p data-i18n="studioLead" style="margin:6vh 0 0; max-width:32em; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.35rem,2.6vw,2.4rem); line-height:1.4; letter-spacing:0.01em; text-wrap:pretty;">Atelier22 Ltd is a visualisation studio founded in 2026 by a team trained in architecture and urbanism, driven by a shared passion for design and digital craftsmanship.</p>
+    <div style="margin-top:7vh; max-width:1120px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 data-i18n="rh2" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our background</h3>
+        <p data-i18n="rb2" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Architecture and urbanism. We understand plan, sections and elevation to generate an image of the design vision</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 data-i18n="rh3" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our starting point</h3>
+        <p data-i18n="rb3" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">A 3D model, 2D drawings, or a brief of what you want to see. We tailor the image to your requirement.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 data-i18n="rh4" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our approach</h3>
+        <p data-i18n="rb4" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">We agree with you on the scenes, the angles, the lighting, the materiality, the atmosphere and post-production to bring the image to life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="c01" data-screen-label="01 Interior visualisation" style="padding-top:13vh; scroll-margin-top:72px;">
+    <div style="padding:0 clamp(20px,4.5vw,64px) 4.5vh;">
+      <p data-i18n="pjK" style="margin:0 0 4.5vh; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Villa Mar Azul · private villa, Mauritius</p>
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="t01" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior</span></p>
+      <h2 data-i18n="h01" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Interiors clients can step into</h2>
+    </div>
+    <img src="export-assets/living.jpg" alt="Dining room at first light beneath the vaulted timber roof, table laid for breakfast, courtyard glazing folded open." loading="eager" style="width:100%; height:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px 48px; flex-wrap:wrap; padding:16px clamp(20px,4.5vw,64px) 0;">
+      <p data-i18n="s01" style="margin:0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Dining table · vaulted timber roof · low warm light</p>
+      <p data-i18n="b01" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">We dress every scene with the traces of daily life: a breakfast mid-served, chairs pulled slightly out of line, soft morning light under the vaulted roof. These imperfections are deliberate. They make an image more realistic</p>
+    </div>
+  </section>
+
+  <section id="c02" data-screen-label="02 Exterior visualisation" style="padding:18vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
+    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">02</span><span data-i18n="t02" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Exterior</span></p>
+      <h2 data-i18n="h02" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Detail that sets the scene</h2>
+      <p data-i18n="b02" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Every element here is placed with intent: fallen leaves and frangipani flowers on the tiles, shoes left at the door, Le Morne rising across the water. This is how we build realism, layering small signs of life until a render reads like a photograph.</p>
+    </div>
+    <figure style="margin:0; justify-self:end; width:min(100%,700px);">
+      <img src="export-assets/entrance.jpg" alt="Entrance court seen through a timber claustra screen, dining terrace and sea beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption data-i18n="s02" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Entrance court · timber claustra · morning sun</figcaption>
+    </figure>
+  </section>
+
+  <section id="c03" data-screen-label="03 Landscape and planting" style="padding:20vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
+    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span data-i18n="t03" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Outdoor living</span></p>
+      <h2 data-i18n="h03" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Vegetation with real depth</h2>
+      <p data-i18n="b03" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Where most renders settle for a flat carpet of green, we grow our gardens blade by blade: grasses of varied height and texture, wildflowers breaking through, fallen frangipani scattered where the wind would leave them. Landscape treated with the same care as the architecture.</p>
+    </div>
+    <figure style="margin:0; position:relative; justify-self:end; width:min(100%,620px);">
+      <span aria-hidden="true" style="position:absolute; top:-24px; left:-18px; right:34px; bottom:38px; border:1px solid var(--line,rgba(40,36,32,0.16)); pointer-events:none;"></span>
+      <img src="export-assets/hammack.jpg" alt="Garden pavilion at mid-morning: a hanging chair on the terrace, frangipani in flower, the bedroom open behind sliding glazing." loading="lazy" decoding="async" style="width:100%; height:auto; position:relative;">
+      <figcaption data-i18n="s03" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Garden pavilion · bright sky</figcaption>
+    </figure>
+  </section>
+
+  <section id="c04" data-screen-label="04 Views that sell the site" style="padding:20vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
+    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span data-i18n="t04" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior–exterior</span></p>
+      <h2 data-i18n="h04" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Texture down to the sheets</h2>
+      <p data-i18n="b04" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Look closely at the bed: creased linen, the weight of a folded blanket, fabric that catches the light the way real cotton does. We obsess over these textures because they are what separates a render from a photograph.</p>
+    </div>
+    <figure style="margin:0; justify-self:end; width:min(100%,560px);">
+      <img src="export-assets/bedroom-04.jpg" alt="Bedroom opening to the pool terrace, the sea and Le Morne beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption data-i18n="s04" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Bedroom · pool terrace · sea and mountain</figcaption>
+    </figure>
+  </section>
+
+  <section id="c05" data-screen-label="05 Water and staging" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:flex; flex-direction:column; align-items:flex-start;">
+    <div style="width:min(100%,620px);">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="t05" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Pool &amp; courtyard</span></p>
+      <h2 data-i18n="h05" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Water that behaves like water</h2>
+    </div>
+    <figure style="margin:6vh 0 0; width:min(100%,1200px);">
+      <img src="export-assets/pool.jpg" alt="Courtyard pool at high sun: palms along the wall, a woman on a float, the kitchen pavilion open beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption style="margin:16px 0 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px 48px; flex-wrap:wrap;">
+        <span data-i18n="s05" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Courtyard pool · palms · high sun</span>
+        <span data-i18n="b05" style="font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Her float sends ripples out across the pool, breaking the sunlight into caustics on the tiles below — this is the kind of unscripted detail that turns a render into something a client will believe.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="c06" data-screen-label="06 Coming home" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
+    <figure style="margin:0; justify-self:start; width:min(100%,560px);">
+      <img src="export-assets/garage.jpg" alt="Arrival court in the afternoon: timber garage door, a couple beside a parked car." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption data-i18n="s06" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Arrival court · timber garage door · long shadows</figcaption>
+    </figure>
+    <div style="padding-bottom:2vh;">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="t06" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Entourage</span></p>
+      <h2 data-i18n="h06" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Entourage that fills the frame</h2>
+      <p data-i18n="b06" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Figures caught mid-conversation, a car parked slightly off-square, volumetric cloud built for the hour rather than dropped in. Populating a scene is where most renders fail. We treat people, vehicles and sky as part of the composition, not as afterthoughts.</p>
+    </div>
+  </section>
+
+  <section id="c07" data-screen-label="07 Slow rhythm" style="padding:20vh clamp(20px,4.5vw,64px) 0 0; scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
+    <figure style="margin:0; justify-self:start; width:min(100%,620px);">
+      <img src="export-assets/sofa.jpg" alt="Living room at sunset: sofa and guitar by full-height glazing, palms against an amber sky." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption data-i18n="s07" style="margin:12px 0 0; padding-left:clamp(20px,4.5vw,64px); font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Living room · guitar · sunset through palms</figcaption>
+    </figure>
+    <div style="padding:0 0 2vh clamp(20px,4.5vw,64px);">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">07</span><span data-i18n="t07" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior · dusk</span></p>
+      <h2 data-i18n="h07" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Light tuned to the hour</h2>
+      <p data-i18n="b07" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">A guitar left against the glazing, a candle lit, a magazine open on the table. From one model we light any hour you need, then fill the room with the objects of someone who actually lives there. Same geometry, entirely different mood.</p>
+    </div>
+  </section>
+
+  <section id="c08" data-screen-label="08 Atmosphere in detail" style="padding:24vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:flex; flex-direction:column; align-items:center;">
+    <div style="width:min(100%,560px);">
+      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">08</span><span data-i18n="t08" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Detail · atmosphere</span></p>
+      <h2 data-i18n="h08" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Materials that hold up close</h2>
+    </div>
+    <figure style="margin:6vh 0 0; width:min(100%,560px);">
+      <img src="export-assets/bathroom.jpg" alt="Bathroom at dusk: a freestanding bath before a steamed window of palms and evening sky." loading="lazy" decoding="async" style="width:100%; height:auto;">
+      <figcaption data-i18n="s08" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Bathroom · framed landscape · last light</figcaption>
+    </figure>
+    <p data-i18n="b08" style="width:min(100%,560px); margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em;">Steam rises faintly off the water and settles on the glass, condensation breaking the reflection just enough. Low light is the hardest test of a material, so we push the close-up detail furthest here. Nothing in the frame is generic.</p>
+  </section>
+
+  <section id="works" data-screen-label="Selected works" style="padding:24vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
+    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">PROJECT</p>
+    <h2 data-i18n="worksTitle" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Selected works</h2>
+    <div style="margin-top:7vh; max-width:1120px;">
+      <a href="#c01" style="display:flex; justify-content:space-between; align-items:baseline; gap:12px 48px; flex-wrap:wrap; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+        <span style="font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.6rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:0.01em;">Villa Mar Azul</span>
+        <span data-i18n="worksMeta1" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Private villa · Mauritius · 2026 · 8 images</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="services" data-screen-label="Services" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
+    <p data-i18n="svcEyebrow" style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">What we do</p>
+    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Services</h2>
+    <p data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Five services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
+    <div style="margin-top:7vh; max-width:1120px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="svc1h" style="margin-left:16px; opacity:0.66;">Still imagery</span></h3>
+        <p data-i18n="svc1b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Exterior and interior views, built from your model and crafted for the real orientation, climate and hour of the site to your requirements.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">02</span><span data-i18n="svc2h" style="margin-left:16px; opacity:0.66;">Post-production</span></h3>
+        <p data-i18n="svc2b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Atmosphere, entourage and colour grading. Files delivered at print resolution and web-ready, no further work needed on your side.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span data-i18n="svc3h" style="margin-left:16px; opacity:0.66;">Presentation design</span></h3>
+        <p data-i18n="svc3b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Boards, decks and layouts, composed so the images hold their weight in front of an investor or a buyer.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span data-i18n="svc4h" style="margin-left:16px; opacity:0.66;">3D modelling</span></h3>
+        <p data-i18n="svc4b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Clean, render-ready SketchUp models built from your AutoCAD files or PDF drawings.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="svc5h" style="margin-left:16px; opacity:0.66;">Websites</span></h3>
+        <p data-i18n="svc5b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Project and studio sites designed and built around the imagery, so that your work is seen the way it was built.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="Contact" style="padding: 22vh clamp(20px,4.5vw,64px) 9vh; scroll-margin-top: 72px; position: relative">
+    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Contact</p>
+    <h2 data-i18n="ctTitle" style="margin:0.4em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.2rem,5.6vw,6rem); line-height:1.05; letter-spacing:0.01em; max-width:14em; text-wrap:balance;">Send us a model or drawings and a brief</h2>
+    <div style="margin-top:7vh; display:flex; flex-wrap:wrap; align-items:baseline; gap:14px clamp(32px,6vw,96px); font-size:13px; letter-spacing:0.08em;">
+      <a href="mailto:atelier22ltd@gmail.com">ATELIER22LTD@gmail.com</a>
+      <a href="https://wa.me/23057535794" target="_blank" rel="noopener">WhatsApp +230 5753 5794</a>
+      <a href="https://www.instagram.com/atelier.22ltd" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61592841971286" target="_blank" rel="noopener">Facebook</a>
+      <span data-i18n="ctLoc" style="opacity:0.7;">Mauritius · GMT+4</span>
+    </div>
+    
+    <footer style="margin-top:8vh; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px 32px; border-top:1px solid var(--line,rgba(40,36,32,0.16)); padding-top:18px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6;">
+      <span data-i18n="ftLine">Atelier 22 Ltd · 3D architectural visualisation</span>
+      <span style="display:flex; flex-wrap:wrap; gap:8px 26px;">
+        <a href="#copyright" data-legal="copyright" onClick="{{ openLegal }}" data-i18n="ftCopy">Copyright</a>
+        <a href="#disclaimer" data-legal="disclaimer" onClick="{{ openLegal }}" data-i18n="ftDisc">Disclaimer</a>
+        <a href="#terms" data-legal="terms" onClick="{{ openLegal }}" data-i18n="ftTerms">Terms &amp; Conditions</a>
+      </span>
+      <span>© 2026</span>
+    </footer>
+  <img src="assets/logo-ink-light.png" alt="Atelier 22 · architecture / 3D visualization" style="height: 205px; position: static; padding-left: 0px; padding-right: 0px; width: 266px; object-fit: fill"></section>
+
+  <sc-if value="{{ legalOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="Legal notices" onClick="{{ closeLegal }}" style="position:fixed; inset:0; z-index:90; background:rgba(30,26,22,0.62); display:flex; align-items:center; justify-content:center; padding:4vh clamp(12px,3vw,40px); box-sizing:border-box;">
+      <div onClick="{{ eatClick }}" style="background:#F6F4F0; color:#282420; width:min(100%,800px); max-height:88vh; overflow:auto; border:1px solid rgba(40,36,32,0.2); box-shadow:0 40px 120px rgba(0,0,0,0.35); padding:clamp(24px,5vw,60px); box-sizing:border-box;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px;">
+          <img src="assets/logo-ink-dark.png" alt="Atelier 22" style="height:44px; width:auto;">
+          <a href="#close" onClick="{{ closeLegal }}" aria-label="Close" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; font-weight:700;">Close ✕</a>
+        </div>
+        <div style="display:{{ dCopy }};">
+          <p style="margin:36px 0 0; font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.55;">Atelier22 Ltd · V01C03082026</p>
+          <h2 style="margin:0.25em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.9rem,4.2vw,3.2rem); line-height:1.05; letter-spacing:0.01em;">Copyright Notice</h2>
+          <div style="width:110px; height:1px; background:#E85C24; margin:24px 0 28px;"></div>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Copyright © 2026 Atelier22 Ltd. All rights reserved.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Ownership of Copyright</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The copyright in this website and all materials published on this website, including but not limited to text, graphics, computer code, artwork, architectural visualisations, 3D renders, photographs, images, videos, presentations, animations, and other visual or audiovisual materials, is owned by Atelier22 Ltd, unless otherwise stated.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">All intellectual property rights in the materials produced and published by Atelier22 Ltd are reserved.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Copyright Licence</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd grants you a worldwide, non-exclusive, non-transferable, royalty-free and revocable licence to:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>view this website and its materials on a computer, mobile device or other electronic device through a web browser;</li>
+            <li>temporarily store website materials in your browser cache for the purpose of viewing the website; and</li>
+            <li>access and use the website for personal and non-commercial purposes.</li>
+          </ul>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd does not grant you any other rights in relation to this website or its materials. All other rights are expressly reserved.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Restrictions on Use</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Unless you have obtained prior written permission from Atelier22 Ltd, you must not:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>copy, reproduce, modify, adapt, edit or transform any material from this website;</li>
+            <li>publish, republish, distribute or redistribute any material;</li>
+            <li>use our renders, 3D models, drawings, presentations, graphics, photographs or other visual materials for commercial or promotional purposes;</li>
+            <li>remove or alter any copyright, trademark or ownership notices;</li>
+            <li>reproduce or incorporate our materials into another website, portfolio, presentation, publication or project;</li>
+            <li>sell, licence, sublicense or otherwise exploit any of our materials; or</li>
+            <li>display or communicate our materials publicly in a manner that implies ownership or endorsement by another person or organisation.</li>
+          </ul>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Any use beyond the rights expressly granted above requires the prior written permission of Atelier22 Ltd.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Data Mining</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The automated and/or systematic collection, scraping, extraction, reproduction or harvesting of data or materials from this website is strictly prohibited without the prior written permission of Atelier22 Ltd.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">This includes the automated collection of images, renders, text, project information, graphics and other website content.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Project and Client Materials</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Certain projects, images, architectural drawings, 3D models, renders, photographs or other materials displayed on this website may be subject to intellectual property rights belonging to clients, architects, consultants, photographers, developers or other third parties.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The publication of such materials on this website does not necessarily mean that Atelier22 Ltd owns all underlying intellectual property rights in those materials.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Permission to use third-party materials must be obtained from the relevant rights holder where required.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Permissions</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If you wish to reproduce, publish, distribute, modify or otherwise use any copyright material belonging to Atelier22 Ltd, you may request permission by contacting us through our official company contact details.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Permission may be granted subject to conditions determined by Atelier22 Ltd.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Enforcement of Copyright</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd takes the protection of its intellectual property rights seriously.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If Atelier22 Ltd discovers that its copyright materials have been used without permission or in breach of the rights granted under this notice, Atelier22 Ltd reserves the right to take appropriate legal action, including seeking damages, injunctive relief and recovery of applicable legal costs.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If you become aware of any unauthorised use of Atelier22 Ltd's copyright materials, please contact us and provide details of the suspected infringement.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Infringing Material</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If you believe that any material published on this website infringes your copyright or the copyright of another person or organisation, please contact Atelier22 Ltd with sufficient information to identify the material and explain the nature of the alleged infringement.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd will review legitimate copyright concerns and take appropriate action where necessary.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Reservation of Rights</h3>
+          <p style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">All rights not expressly granted in this Copyright Notice are reserved by Atelier22 Ltd.</p>
+        </div>
+        <div style="display:{{ dDisc }};">
+          <p style="margin:36px 0 0; font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.55;">Atelier22 Ltd · V01C03082026</p>
+          <h2 style="margin:0.25em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.9rem,4.2vw,3.2rem); line-height:1.05; letter-spacing:0.01em;">Disclaimer</h2>
+          <div style="width:110px; height:1px; background:#E85C24; margin:24px 0 28px;"></div>
+          <h3 style="margin:0 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">No Warranties</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">This website is provided on an "as is" and "as available" basis, without representations or warranties of any kind, whether express or implied.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd makes no representations or warranties regarding this website or the information, materials, images, renders, visualisations, project descriptions and other content made available through it.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Without limiting the foregoing, Atelier22 Ltd does not warrant that:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>this website will be continuously available or available at any particular time;</li>
+            <li>the website will be free from errors, interruptions, defects, viruses or other harmful components;</li>
+            <li>the information provided on the website is complete, current, true, accurate or non-misleading; or</li>
+            <li>the website or its content will meet any particular requirements or expectations.</li>
+          </ul>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The information and materials provided on this website are for general informational and portfolio purposes only and should not be considered professional architectural, engineering, construction, financial or legal advice.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Limitations of Liability</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">To the maximum extent permitted by applicable law, Atelier22 Ltd shall not be liable for any loss or damage arising directly or indirectly from your use of, or reliance upon, this website or any information or materials contained on it.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">This includes, without limitation:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>any indirect, incidental, special or consequential loss;</li>
+            <li>loss of revenue, income or profits;</li>
+            <li>loss of anticipated savings;</li>
+            <li>loss of contracts, business opportunities or business relationships;</li>
+            <li>loss of reputation or goodwill;</li>
+            <li>loss or corruption of data or information; or</li>
+            <li>any interruption or inability to access or use the website.</li>
+          </ul>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">These limitations apply even where Atelier22 Ltd has been advised of the possibility of such loss or damage.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Exceptions</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Nothing in this disclaimer shall exclude or limit any liability that cannot lawfully be excluded or limited under applicable law.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">In particular, nothing in this disclaimer shall exclude or limit Atelier22 Ltd's liability for:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>death or personal injury caused by negligence;</li>
+            <li>fraud or fraudulent misrepresentation; or</li>
+            <li>any other matter for which liability cannot legally be excluded or limited.</li>
+          </ul>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Website Content and Visualisations</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The renders, 3D visualisations, architectural images, graphics, presentations and other visual materials displayed on this website are intended to communicate design concepts, presentation quality and visualisation capabilities.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Unless expressly stated otherwise, such visualisations should not be interpreted as technical drawings, construction documents, measurements, specifications or guarantees of the final built result.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Actual materials, colours, lighting, finishes, dimensions and construction outcomes may differ from those represented in visualisations.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Third-Party Content and Links</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">This website may contain links to third-party websites, platforms or services.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd does not control and is not responsible for the availability, accuracy, content, security, privacy practices or services provided by third-party websites.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The inclusion of a third-party link does not constitute an endorsement, recommendation or guarantee by Atelier22 Ltd.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Reasonableness</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">By using this website, you acknowledge that the exclusions and limitations of liability set out in this disclaimer are reasonable to the extent permitted by applicable law.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If you do not agree with these terms, you should discontinue your use of the website.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Protection of Officers and Employees</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">You acknowledge that Atelier22 Ltd, as a limited liability company, has an interest in limiting the personal liability of its directors, officers, employees, agents, contractors and representatives.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">To the maximum extent permitted by applicable law, you agree not to bring a personal claim against any director, officer, employee, agent or representative of Atelier22 Ltd in relation to losses arising from your use of this website.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The limitations and exclusions contained in this disclaimer shall apply, where legally permitted, to Atelier22 Ltd and its directors, officers, employees, agents, contractors, representatives, successors and assigns.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Unenforceable Provisions</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If any provision of this disclaimer is found to be invalid, unlawful or unenforceable under applicable law, that provision shall be modified or removed to the minimum extent necessary.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">The remaining provisions of this disclaimer shall continue to remain valid and enforceable.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Changes to This Disclaimer</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd reserves the right to update or amend this website disclaimer from time to time.</p>
+          <p style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Any changes will become effective when the updated disclaimer is published on this website.</p>
+        </div>
+        <div style="display:{{ dTerms }};">
+          <p style="margin:36px 0 0; font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.55;">Atelier22 Ltd · V01C03082026 · Last updated: August 2026</p>
+          <h2 style="margin:0.25em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.9rem,4.2vw,3.2rem); line-height:1.05; letter-spacing:0.01em;">Terms and Conditions</h2>
+          <div style="width:110px; height:1px; background:#E85C24; margin:24px 0 28px;"></div>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Please read these Terms and Conditions ("Terms") carefully before using the website operated by Atelier22 Ltd, a company registered in the Republic of Mauritius.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">By accessing or using this website, you agree to be bound by these Terms. If you do not agree, please do not use the website. Atelier22 Ltd reserves the right to update these Terms at any time.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Use of Website</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">This website is provided for informational, portfolio and business purposes.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">You must not:</p>
+          <ul style="margin:0 0 12px; padding-left:20px; font-size:13px; line-height:2; letter-spacing:0.015em;">
+            <li>use the website for any unlawful or unauthorised purpose;</li>
+            <li>copy, reproduce, modify, distribute or commercially use our content without written permission;</li>
+            <li>reproduce or use our renders, 3D visualisations, images, presentations, graphics, branding or other materials without permission;</li>
+            <li>attempt to gain unauthorised access to the website or its systems; or</li>
+            <li>introduce viruses, malware or other harmful code.</li>
+          </ul>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Intellectual Property</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">All content on this website, including text, logos, graphics, photographs, architectural visualisations, 3D renders, presentations and other materials, is owned by or licensed to Atelier22 Ltd, unless otherwise stated.</p>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">No ownership or licence is granted to you except where expressly permitted by Atelier22 Ltd.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">User-Submitted Content</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">If you submit files, images, documents or other materials to Atelier22 Ltd through the website, you confirm that you have the necessary rights and permissions to provide them.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Termination</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">Atelier22 Ltd may suspend or terminate access to the website if these Terms are breached or where necessary for security, legal or operational reasons.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Governing Law</h3>
+          <p style="margin:0 0 12px; font-size:13px; line-height:2; letter-spacing:0.015em;">These Terms are governed by the laws of the Republic of Mauritius, and any disputes shall be subject to the applicable courts of Mauritius.</p>
+          <h3 style="margin:34px 0 12px; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; color:#E85C24;">Contact</h3>
+          <p style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">For questions regarding these Terms, please contact Atelier22 Ltd through the contact details provided on this website.</p>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;dayLag&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 0.14, &quot;min&quot;: 0.05, &quot;max&quot;: 0.35, &quot;step&quot;: 0.01, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Day cycle&quot;},
+  &quot;showTimeLabels&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Chapters&quot;}
+}">
+class Component extends DCLogic {
+  state = { projOpen: false, legal: null, hl: 0 };
+  hlSync() {
+    document.querySelectorAll('video[data-hl]').forEach(v => {
+      const i = +v.getAttribute('data-hl');
+      if (i === this.state.hl) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      else if (!v.paused) v.pause();
+    });
+  }
+  FR = {
+    heroTag: 'Studio de visualisation 3D · Maurice',
+    heroPitch: 'Nous créons des images photoréalistes pour les architectes, les promoteurs et les professionnels de l\u2019immobilier. Images fixes, animations, maquettes 3D et design de présentation, pensés pour montrer chaque projet sous son meilleur jour.',
+    pjK: 'Villa Mar Azul · villa privée, Maurice',
+    t01: 'Intérieur', h01: 'Des intérieurs où l\u2019on entre déjà',
+    s01: 'Table à manger · charpente voûtée · lumière chaude et basse',
+    b01: 'Nous habillons chaque scène des traces du quotidien\u00a0: un petit-déjeuner en cours, des chaises légèrement décalées, une lumière douce du matin sous la charpente voûtée. Ces imperfections sont voulues. Elles rendent l\u2019image plus réaliste',
+    t02: 'Extérieur', h02: 'Le détail qui plante le décor',
+    s02: 'Cour d\u2019entrée · claustra de bois · soleil du matin',
+    b02: 'Chaque élément est placé avec intention\u00a0: des feuilles et des fleurs de frangipanier tombées sur le carrelage, des chaussures laissées à la porte, Le Morne qui se dresse au-delà de l\u2019eau. C\u2019est ainsi que nous construisons le réalisme, en superposant de petits signes de vie jusqu\u2019à ce qu\u2019un rendu se lise comme une photographie.',
+    t03: 'Vie en plein air', h03: 'Une végétation avec une vraie profondeur',
+    s03: 'Pavillon de jardin · ciel lumineux',
+    b03: 'Là où la plupart des rendus se contentent d\u2019un tapis vert uniforme, nous cultivons nos jardins brin par brin\u00a0: des herbes de hauteurs et de textures variées, des fleurs sauvages qui percent, des frangipaniers tombés là où le vent les aurait laissés. Le paysage traité avec le même soin que l\u2019architecture.',
+    t04: 'Intérieur–extérieur', h04: 'La texture jusque dans les draps',
+    s04: 'Chambre · terrasse de la piscine · mer et montagne',
+    b04: 'Regardez le lit de près\u00a0: du lin froissé, le poids d\u2019une couverture pliée, un tissu qui accroche la lumière comme le ferait un vrai coton. Nous soignons ces textures à l\u2019extrême, car ce sont elles qui séparent un rendu d\u2019une photographie.',
+    t05: 'Piscine et cour', h05: 'Une eau qui se comporte comme de l\u2019eau',
+    s05: 'Bassin de cour · palmiers · soleil au zénith',
+    b05: 'Sa bouée envoie des rides à travers le bassin, brisant la lumière du soleil en caustiques sur le carrelage en dessous — c\u2019est ce genre de détail non scénarisé qui transforme un rendu en une image qu\u2019un client croira.',
+    t06: 'Entourage', h06: 'Un entourage qui remplit le cadre',
+    s06: 'Cour d\u2019arrivée · porte de garage en bois · ombres longues',
+    b06: 'Des personnages saisis en pleine conversation, une voiture garée légèrement de biais, des nuages volumétriques construits pour l\u2019heure plutôt que plaqués. C\u2019est sur le peuplement d\u2019une scène que la plupart des rendus échouent. Nous traitons les personnes, les véhicules et le ciel comme des éléments de composition, jamais comme des ajouts de dernière minute.',
+    t07: 'Intérieur · crépuscule', h07: 'Une lumière accordée à l\u2019heure',
+    s07: 'Salon · guitare · coucher de soleil à travers les palmiers',
+    b07: 'Une guitare laissée contre la baie, une bougie allumée, un magazine ouvert sur la table. À partir d\u2019une seule maquette, nous éclairons l\u2019heure que vous voulez, puis nous remplissons la pièce des objets de quelqu\u2019un qui y vit vraiment. Même géométrie, ambiance totalement différente.',
+    t08: 'Détail · atmosphère', h08: 'Des matières qui tiennent de près',
+    s08: 'Salle de bains · paysage cadré · dernière lumière',
+    b08: 'Une vapeur ténue s\u2019élève de l\u2019eau et se dépose sur le vitrage, la condensation brisant le reflet juste assez. La lumière basse est l\u2019épreuve la plus dure pour une matière, alors nous poussons ici le détail au plus près. Rien dans le cadre n\u2019est générique.',
+    worksTitle: 'Projets choisis',
+    worksMeta1: 'Villa privée · Maurice · 2026 · 8 images',
+    studioEyebrow: 'Atelier 22 Ltd · Maurice',
+    studioLead: 'Atelier22 Ltd est un studio de visualisation fondé en 2026 par une équipe formée à l\u2019architecture et à l\u2019urbanisme, animée par une passion commune pour le design et l\u2019artisanat numérique.',
+    rh2: 'Notre parcours',
+    rb2: 'De l\u2019architecture et de l\u2019urbanisme. Nous comprenons les plans, les coupes et les élévations pour produire une image de la vision du projet',
+    rh3: 'Notre point de départ',
+    rb3: 'Un modèle 3D, des dessins 2D ou un brief de ce que vous voulez voir. Nous adaptons l\u2019image à vos exigences.',
+    rh4: 'Notre approche',
+    rb4: 'Nous validons ensemble les scènes, les angles, la lumière, la matérialité, l\u2019atmosphère et la post-production pour donner vie à l\u2019image.',
+    svcEyebrow: 'Ce que nous faisons',
+    svcIntro: 'Cinq services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
+    svc1h: 'Images fixes',
+    svc1b: 'Vues extérieures et intérieures, construites à partir de votre maquette et éclairées selon l\u2019orientation, le climat et l\u2019heure réels du site, selon vos exigences.',
+    svc2h: 'Post-production',
+    svc2b: 'Ambiance, entourage et étalonnage. Fichiers livrés en résolution d\u2019impression et prêts pour le web, sans travail supplémentaire de votre côté.',
+    svc4h: 'Modélisation 3D',
+    svc4b: 'Maquettes SketchUp propres et prêtes au rendu, construites à partir de vos fichiers AutoCAD ou de plans PDF.',
+    svc5h: 'Sites web',
+    svc5b: 'Sites de projet et de studio conçus et développés autour des images, pour que votre travail soit vu tel qu\u2019il a été construit.',
+    svc3h: 'Design de présentation',
+    svc3b: 'Planches, présentations et mises en page, composées pour que les images gardent tout leur poids devant un investisseur ou un acheteur.',
+    ctTitle: 'Envoyez-nous une maquette ou des plans et un brief',
+    ctLoc: 'Maurice · GMT+4',
+    ftLine: 'Atelier 22 Ltd · Visualisation architecturale 3D',
+    hlEyebrow: 'Temps forts',
+    hl1: 'Animation · approche extérieure',
+    hl2: 'Animation · scène d\u2019arrivée',
+    hl3: 'Animation · scène intérieure',
+    hl4: 'Animation · piscine',
+    ddVilla: 'Villa privée · Maurice · 2026',
+    ddIndex: 'Index complet →',
+    ftCopy: 'Droits d\u2019auteur',
+    ftDisc: 'Avertissement',
+    ftTerms: 'Conditions générales'
+  };
+  renderVals() {
+    const hoverable = () => window.matchMedia && window.matchMedia('(hover: hover)').matches;
+    return {
+      hlOp0: this.state.hl === 0 ? 1 : 0,
+      hlOp1: this.state.hl === 1 ? 1 : 0,
+      hlOp2: this.state.hl === 2 ? 1 : 0,
+      hlOp3: this.state.hl === 3 ? 1 : 0,
+      hlD0: this.state.hl === 0 ? 'inline' : 'none',
+      hlD1: this.state.hl === 1 ? 'inline' : 'none',
+      hlD2: this.state.hl === 2 ? 'inline' : 'none',
+      hlD3: this.state.hl === 3 ? 'inline' : 'none',
+      hlCounter: '0' + (this.state.hl + 1) + ' / 04',
+      hlW0: this.state.hl === 0 ? '26px' : '6px',
+      hlW1: this.state.hl === 1 ? '26px' : '6px',
+      hlW2: this.state.hl === 2 ? '26px' : '6px',
+      hlW3: this.state.hl === 3 ? '26px' : '6px',
+      hlBg0: this.state.hl === 0 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlBg1: this.state.hl === 1 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlBg2: this.state.hl === 2 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlBg3: this.state.hl === 3 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlGo: (e) => { e.preventDefault(); this.setState({ hl: +e.currentTarget.getAttribute('data-hlgo') }); },
+      hlPrev: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 3) % 4 })); },
+      hlNext: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 1) % 4 })); },
+      hlEnded: (e) => { if (+e.currentTarget.getAttribute('data-hl') === this.state.hl) { const v = e.currentTarget; this.setState(s => ({ hl: (s.hl + 1) % 4 }), () => { v.currentTime = 0; }); } },
+      projOpen: this.state.projOpen,
+      projOpenStr: this.state.projOpen ? 'true' : 'false',
+      projEnter: () => { if (hoverable()) this.setState({ projOpen: true }); },
+      projLeave: () => { if (hoverable()) this.setState({ projOpen: false }); },
+      projToggle: (e) => { e.preventDefault(); this.setState(s => ({ projOpen: !s.projOpen })); },
+      projGo: () => this.setState({ projOpen: false }),
+      legalOpen: !!this.state.legal,
+      dCopy: this.state.legal === 'copyright' ? 'block' : 'none',
+      dDisc: this.state.legal === 'disclaimer' ? 'block' : 'none',
+      dTerms: this.state.legal === 'terms' ? 'block' : 'none',
+      openLegal: (e) => { e.preventDefault(); this.setState({ legal: e.currentTarget.getAttribute('data-legal') }); },
+      closeLegal: (e) => { e.preventDefault(); this.setState({ legal: null }); },
+      eatClick: (e) => e.stopPropagation(),
+      pickLang: (e) => {
+        e.preventDefault();
+        const l = e.currentTarget.getAttribute('data-lang-btn');
+        if (l && l !== this.lang) { this.lang = l; this.applyLang(); this.measure(); this.compute(true); }
+      }
+    };
+  }
+  componentDidMount() {
+    this.d = document.documentElement;
+    this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.cur = null; this.raf = 0; this.lastActive = undefined;
+    this.enCache = {}; this.enTitle = {};
+    try { this.lang = localStorage.getItem('a22-lang') || 'en'; } catch (e) { this.lang = 'en'; }
+    this.onScroll = () => this.compute(false);
+    this.onResize = () => { this.measure(); this.applyEnv(); this.compute(true); };
+    setTimeout(() => this.hlSync(), 300);
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ projOpen: false, legal: null }); };
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    if (this.mq.addEventListener) this.mq.addEventListener('change', this.onResize);
+    Array.from(document.images).forEach(im => { if (!im.complete) im.addEventListener('load', this.onResize, { once: true }); });
+    this.applyLang();
+    this.measure(); this.applyEnv(); this.compute(true);
+    setTimeout(this.onResize, 600);
+    this.initLoupe();
+  }
+  initLoupe() {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const L = 190, Z = 2;
+    const loupe = document.createElement('div');
+    loupe.setAttribute('aria-hidden', 'true');
+    loupe.style.cssText = 'position:fixed; z-index:80; width:' + L + 'px; height:' + L + 'px; border:1px solid rgba(237,231,221,0.9); box-shadow:0 6px 28px rgba(0,0,0,0.35); background-repeat:no-repeat; pointer-events:none; display:none;';
+    document.body.appendChild(loupe);
+    this.loupe = loupe;
+    const move = (e) => {
+      const im = e.currentTarget, r = im.getBoundingClientRect();
+      loupe.style.display = 'block';
+      loupe.style.left = (e.clientX + 18) + 'px';
+      loupe.style.top = (e.clientY + 18) + 'px';
+      loupe.style.backgroundImage = 'url("' + im.currentSrc + '")';
+      loupe.style.backgroundSize = (r.width * Z) + 'px ' + (r.height * Z) + 'px';
+      loupe.style.backgroundPosition = (-((e.clientX - r.left) * Z - L / 2)) + 'px ' + (-((e.clientY - r.top) * Z - L / 2)) + 'px';
+    };
+    const hide = () => { loupe.style.display = 'none'; };
+    document.querySelectorAll('section[id^="c0"] img').forEach(im => {
+      const attach = () => {
+        if (im.naturalWidth >= im.naturalHeight) return;
+        im.style.cursor = 'crosshair';
+        im.addEventListener('mousemove', move);
+        im.addEventListener('mouseleave', hide);
+      };
+      if (im.complete && im.naturalWidth) attach(); else im.addEventListener('load', attach, { once: true });
+    });
+    this.hideLoupe = hide;
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onResize);
+    cancelAnimationFrame(this.raf);
+    if (this.loupe) this.loupe.remove();
+  }
+  componentDidUpdate() { document.body.style.overflow = this.state.legal ? 'hidden' : ''; this.hlSync(); this.applyLang(); this.measure(); this.applyEnv(); this.compute(true); }
+  applyLang() {
+    const fr = this.lang === 'fr';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (!(k in this.enCache)) this.enCache[k] = el.textContent;
+      const v = fr ? (this.FR[k] ?? this.enCache[k]) : this.enCache[k];
+      if (el.textContent !== v) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const k = el.getAttribute('data-i18n-title');
+      if (!(k in this.enTitle)) this.enTitle[k] = el.getAttribute('title') || '';
+      el.setAttribute('title', fr ? (this.FR[k] ?? this.enTitle[k]) : this.enTitle[k]);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(b => {
+      const on = b.getAttribute('data-lang-btn') === this.lang;
+      b.style.color = on ? '#E85C24' : '';
+      b.style.opacity = on ? '1' : '0.55';
+      if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+    document.title = fr ? 'Atelier 22 · Visualisation architecturale 3D, Maurice' : 'Atelier 22 · 3D architectural visualisation, Mauritius';
+    document.documentElement.setAttribute('lang', fr ? 'fr' : 'en');
+    try { localStorage.setItem('a22-lang', this.lang); } catch (e) {}
+  }
+  hex(h) { return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); }
+  applyEnv() {
+    this.d.style.setProperty('--timelabel', (this.props.showTimeLabels ?? true) ? 'inline' : 'none');
+  }
+  measure() {
+    const G = { top: '#EDE7DD', c01: '#EDE7DD', c02: '#F0EBE1', c03: '#F6F4F0', c04: '#F6F4F0', c05: '#F1EAD9', c06: '#EADCC8', c07: '#E3D6C4', c08: '#282420', works: '#282420', studio: '#EDE7DD', services: '#241F1B', contact: '#241F1B' };
+    const I = { top: '#282420', c01: '#282420', c02: '#282420', c03: '#282420', c04: '#282420', c05: '#282420', c06: '#282420', c07: '#282420', c08: '#EDE7DD', works: '#EDE7DD', studio: '#282420', services: '#EDE7DD', contact: '#EDE7DD' };
+    const HOLD = { c07: 0.92 };
+    const AT = { c08: 0.72 };
+    this.stops = [];
+    for (const id of Object.keys(G)) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      const top = r.top + window.scrollY;
+      const span = Math.min(r.height, window.innerHeight);
+      const g = this.hex(G[id]), i = this.hex(I[id]);
+      this.stops.push({ id, top, p: top + span * (AT[id] ?? 0.45), g, i });
+      if (HOLD[id]) this.stops.push({ id: id + '-hold', top, p: top + r.height * HOLD[id], g, i });
+    }
+    this.stops.sort((a, b) => a.p - b.p);
+  }
+  compute(immediate) {
+    const s = this.stops;
+    if (!s || !s.length) return;
+    const probe = window.scrollY + window.innerHeight * 0.5;
+    let a = s[0], b = s[0], f = 0;
+    if (probe >= s[s.length - 1].p) { a = b = s[s.length - 1]; }
+    else if (probe > s[0].p) {
+      for (let k = 0; k < s.length - 1; k++) {
+        if (probe >= s[k].p && probe <= s[k + 1].p) { a = s[k]; b = s[k + 1]; f = (probe - s[k].p) / Math.max(1, s[k + 1].p - s[k].p); break; }
+      }
+    }
+    const reduced = this.mq.matches;
+    if (reduced) f = Math.round(f);
+    const mix = (x, y) => [0, 1, 2].map(j => x[j] + (y[j] - x[j]) * f);
+    this.target = { g: mix(a.g, b.g), i: mix(a.i, b.i) };
+    this.spy();
+    if (reduced || immediate || !this.cur) {
+      this.cur = { g: this.target.g.slice(), i: this.target.i.slice() };
+      this.setVars();
+      return;
+    }
+    if (!this.raf) this.tick();
+  }
+  tick() {
+    const lag = Math.min(0.5, Math.max(0.04, this.props.dayLag ?? 0.14));
+    const t = this.target, c = this.cur;
+    let done = true;
+    ['g', 'i'].forEach(k => {
+      c[k] = c[k].map((v, j) => {
+        const n = v + (t[k][j] - v) * lag;
+        if (Math.abs(t[k][j] - n) > 0.4) done = false;
+        return n;
+      });
+    });
+    this.setVars();
+    if (done) { this.cur = { g: t.g.slice(), i: t.i.slice() }; this.setVars(); this.raf = 0; }
+    else { this.raf = requestAnimationFrame(() => this.tick()); }
+  }
+  setVars() {
+    const r = v => Math.round(v);
+    const [gr, gg, gb] = this.cur.g, [ir, ig, ib] = this.cur.i;
+    const dark = (gr + gg + gb) / 3 < 110;
+    this.d.style.setProperty('--ground', 'rgb(' + r(gr) + ',' + r(gg) + ',' + r(gb) + ')');
+    this.d.style.setProperty('--ink', 'rgb(' + r(ir) + ',' + r(ig) + ',' + r(ib) + ')');
+    this.d.style.setProperty('--line', 'rgba(' + r(ir) + ',' + r(ig) + ',' + r(ib) + ',' + (dark ? 0.3 : 0.17) + ')');
+    this.d.style.setProperty('--logoA', dark ? '0' : '1');
+    this.d.style.setProperty('--logoB', dark ? '1' : '0');
+  }
+  spy() {
+    const navIds = ['works', 'studio', 'services', 'contact'];
+    const y = window.scrollY, vh = window.innerHeight;
+    let active = null;
+    for (const st of this.stops) if (navIds.indexOf(st.id) !== -1 && st.top - vh * 0.45 <= y) active = st.id;
+    if (active === this.lastActive) return;
+    this.lastActive = active;
+    document.querySelectorAll('[data-nav]').forEach(el => {
+      const on = el.getAttribute('data-nav') === active;
+      el.style.color = on ? '#E85C24' : '';
+      if (on) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
+    });
+  }
+}
+</script>
+</body>
+</html>
