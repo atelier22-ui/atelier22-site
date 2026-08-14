@@ -30,18 +30,42 @@
     img { display: block; }
     ::selection { background: #E85C24; color: #F6F4F0; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    [data-navstrip]::-webkit-scrollbar { display: none; }
+    @media (max-width: 940px) {
+      [data-navlinks] { display: none !important; }
+      [data-langs] { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
+      [data-navstrip] { display: flex !important; }
+      [data-navrow] { padding-top: 6px !important; padding-bottom: 6px !important; }
+      [data-navrow] img { height: 34px !important; }
+      [data-wordmark] { font-size: 14px !important; letter-spacing: 0.13em !important; }
+      #highlights { padding-top: var(--navh, 96px) !important; }
+      [id] { scroll-margin-top: calc(var(--navh, 96px) + 10px) !important; }
+      [data-hlgo] { padding: 19px 0 !important; background-clip: content-box !important; }
+      section[id^="c0"] { padding-left: 0 !important; padding-right: 0 !important; padding-top: 11vh !important; }
+      section[id^="c0"] > div,
+      section[id^="c0"] > p,
+      section[id^="c0"] > figure > figcaption { box-sizing: border-box !important; padding-left: 20px !important; padding-right: 20px !important; }
+      section[id^="c0"] > figure { width: 100% !important; max-width: none !important; justify-self: stretch !important; margin-left: 0 !important; margin-right: 0 !important; }
+      #c03 figure > span[aria-hidden] { display: none !important; }
+      #c05 h2 { white-space: normal !important; text-wrap: balance; }
+      #studio, #works, #services, #contact { padding-top: 13vh !important; }
+      #contact a, footer a { display: inline-block; padding: 9px 0; }
+      [role="dialog"] > div { padding: 24px 20px !important; }
+    }
   </style>
 </helmet>
 <div style="font-family:'Space Mono',monospace; color:var(--ink,#282420);">
-  <nav aria-label="Chapters" style="position:fixed; top:0; left:0; right:0; z-index:60; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px clamp(20px,4.5vw,64px); background:var(--ground,#EDE7DD); border-bottom:1px solid var(--line,rgba(40,36,32,0.16)); color:var(--ink,#282420);">
-    <a href="#top" aria-label="Atelier 22 · top of page" style="display:flex; align-items:center; gap:14px; flex:none;">
+  <nav aria-label="Chapters" style="position:fixed; top:0; left:0; right:0; z-index:60; background:var(--ground,#EDE7DD); border-bottom:1px solid var(--line,rgba(40,36,32,0.16)); color:var(--ink,#282420);">
+    <div data-navrow="1" style="display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px clamp(20px,4.5vw,64px);">
+    <a href="#top" onClick="{{ goTop }}" aria-label="Atelier 22 · top of page" style="display:flex; align-items:center; gap:14px; flex:none;">
       <span style="display:inline-block; position:relative;">
         <img src="assets/logo-ink-dark.png" alt="Atelier 22 · architecture / 3D visualization" style="height:48px; width:auto; opacity:var(--logoA,1); transition:opacity 0.35s;">
         <img src="assets/logo-ink-light.png" alt="" aria-hidden="true" style="position:absolute; top:0; left:0; height:48px; width:auto; opacity:var(--logoB,0); transition:opacity 0.35s;">
       </span>
-      <span style="font-family:'Jost',sans-serif; font-weight:300; font-size:17px; letter-spacing:0.16em; text-transform:uppercase; white-space:nowrap;">Atelier <span style="color:#E85C24;">22</span></span>
+      <span data-wordmark="1" style="font-family:'Jost',sans-serif; font-weight:300; font-size:17px; letter-spacing:0.16em; text-transform:uppercase; white-space:nowrap;">Atelier <span style="color:#E85C24;">22</span></span>
     </a>
-    <div style="display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;">
+    <div style="display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;">
+      <div data-navlinks="1" style="display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); white-space:nowrap;">
       <a data-nav="studio" href="#studio">Studio</a>
       <span onMouseEnter="{{ projEnter }}" onMouseLeave="{{ projLeave }}" style="position:relative; display:inline-block;">
         <a data-nav="works" href="#works" onClick="{{ projToggle }}" aria-haspopup="true" aria-expanded="{{ projOpenStr }}" title="Project index">PROJECT<span aria-hidden="true" style="display:inline-block; margin-left:6px; font-size:8px; opacity:0.65;">▾</span></a>
@@ -59,10 +83,18 @@
       </span>
       <a data-nav="services" href="#services">Services</a>
       <a data-nav="contact" href="#contact">Contact</a>
-      <span style="display:flex; align-items:center; gap:10px; margin-left:4px; padding-left:14px; border-left:1px solid var(--line,rgba(40,36,32,0.16));">
+      </div>
+      <span data-langs="1" style="display:flex; align-items:center; gap:10px; margin-left:4px; padding-left:14px; border-left:1px solid var(--line,rgba(40,36,32,0.16));">
         <a data-lang-btn="en" href="#top" onClick="{{ pickLang }}" aria-label="English" style="font-weight:700;">EN</a>
         <a data-lang-btn="fr" href="#top" onClick="{{ pickLang }}" aria-label="Français" style="font-weight:700; opacity:0.55;">FR</a>
       </span>
+    </div>
+    </div>
+    <div data-navstrip="1" style="display:none; align-items:stretch; overflow-x:auto; border-top:1px solid var(--line,rgba(40,36,32,0.16)); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; scrollbar-width:none;">
+      <a data-nav="studio" href="#studio" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Studio</a>
+      <a data-nav="works" href="#works" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Project</a>
+      <a data-nav="services" href="#services" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Services</a>
+      <a data-nav="contact" href="#contact" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Contact</a>
     </div>
   </nav>
 
@@ -148,7 +180,7 @@
     <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
       <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span data-i18n="t03" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Outdoor living</span></p>
       <h2 data-i18n="h03" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Vegetation with real depth</h2>
-      <p data-i18n="b03" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Where most renders settle for a flat carpet of green, we grow our gardens blade by blade: grasses of varied height and texture, wildflowers breaking through, fallen frangipani scattered where the wind would leave them. Landscape treated with the same care as the architecture.</p>
+      <p data-i18n="b03" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">We grow our gardens blade by blade: grasses of varied height and texture, wildflowers breaking through, fallen frangipani scattered where the wind would leave them. Landscape treated with the same care as the architecture.</p>
     </div>
     <figure style="margin:0; position:relative; justify-self:end; width:min(100%,620px);">
       <span aria-hidden="true" style="position:absolute; top:-24px; left:-18px; right:34px; bottom:38px; border:1px solid var(--line,rgba(40,36,32,0.16)); pointer-events:none;"></span>
@@ -233,7 +265,7 @@
   <section id="services" data-screen-label="Services" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
     <p data-i18n="svcEyebrow" style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">What we do</p>
     <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Services</h2>
-    <p data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Five services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
+    <p data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Six services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
     <div style="margin-top:7vh; max-width:1120px;">
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="svc1h" style="margin-left:16px; opacity:0.66;">Still imagery</span></h3>
@@ -251,8 +283,12 @@
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span data-i18n="svc4h" style="margin-left:16px; opacity:0.66;">3D modelling</span></h3>
         <p data-i18n="svc4b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Clean, render-ready SketchUp models built from your AutoCAD files or PDF drawings.</p>
       </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="svc6h" style="margin-left:16px; opacity:0.66;">Virtual tour / virtual reality</span></h3>
+        <p data-i18n="svc6b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">360° panoramas and walkthroughs built from the same model, viewed in a browser or a headset. Clients move through the project at their own pace, before anything is built.</p>
+      </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
-        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="svc5h" style="margin-left:16px; opacity:0.66;">Websites</span></h3>
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="svc5h" style="margin-left:16px; opacity:0.66;">Websites</span></h3>
         <p data-i18n="svc5b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Project and studio sites designed and built around the imagery, so that your work is seen the way it was built.</p>
       </div>
     </div>
@@ -453,7 +489,7 @@ class Component extends DCLogic {
     b02: 'Chaque élément est placé avec intention\u00a0: des feuilles et des fleurs de frangipanier tombées sur le carrelage, des chaussures laissées à la porte, Le Morne qui se dresse au-delà de l\u2019eau. C\u2019est ainsi que nous construisons le réalisme, en superposant de petits signes de vie jusqu\u2019à ce qu\u2019un rendu se lise comme une photographie.',
     t03: 'Vie en plein air', h03: 'Une végétation avec une vraie profondeur',
     s03: 'Pavillon de jardin · ciel lumineux',
-    b03: 'Là où la plupart des rendus se contentent d\u2019un tapis vert uniforme, nous cultivons nos jardins brin par brin\u00a0: des herbes de hauteurs et de textures variées, des fleurs sauvages qui percent, des frangipaniers tombés là où le vent les aurait laissés. Le paysage traité avec le même soin que l\u2019architecture.',
+    b03: 'Nous cultivons nos jardins brin par brin\u00a0: des herbes de hauteurs et de textures variées, des fleurs sauvages qui percent, des frangipaniers tombés là où le vent les aurait laissés. Le paysage traité avec le même soin que l\u2019architecture.',
     t04: 'Intérieur–extérieur', h04: 'La texture jusque dans les draps',
     s04: 'Chambre · terrasse de la piscine · mer et montagne',
     b04: 'Regardez le lit de près\u00a0: du lin froissé, le poids d\u2019une couverture pliée, un tissu qui accroche la lumière comme le ferait un vrai coton. Nous soignons ces textures à l\u2019extrême, car ce sont elles qui séparent un rendu d\u2019une photographie.',
@@ -480,7 +516,9 @@ class Component extends DCLogic {
     rh4: 'Notre approche',
     rb4: 'Nous validons ensemble les scènes, les angles, la lumière, la matérialité, l\u2019atmosphère et la post-production pour donner vie à l\u2019image.',
     svcEyebrow: 'Ce que nous faisons',
-    svcIntro: 'Cinq services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
+    svc6h: 'Visite virtuelle / réalité virtuelle',
+    svc6b: 'Panoramas 360° et visites immersives construits à partir de la même maquette, consultables dans un navigateur ou un casque. Le client parcourt le projet à son rythme, avant même que rien ne soit construit.',
+    svcIntro: 'Six services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
     svc1h: 'Images fixes',
     svc1b: 'Vues extérieures et intérieures, construites à partir de votre maquette et éclairées selon l\u2019orientation, le climat et l\u2019heure réels du site, selon vos exigences.',
     svc2h: 'Post-production',
@@ -542,6 +580,7 @@ class Component extends DCLogic {
       openLegal: (e) => { e.preventDefault(); this.setState({ legal: e.currentTarget.getAttribute('data-legal') }); },
       closeLegal: (e) => { e.preventDefault(); this.setState({ legal: null }); },
       eatClick: (e) => e.stopPropagation(),
+      goTop: (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       pickLang: (e) => {
         e.preventDefault();
         const l = e.currentTarget.getAttribute('data-lang-btn');
@@ -568,6 +607,99 @@ class Component extends DCLogic {
     this.measure(); this.applyEnv(); this.compute(true);
     setTimeout(this.onResize, 600);
     this.initLoupe();
+    this.initViewer();
+    this.initSwipe();
+  }
+  initSwipe() {
+    const reel = document.getElementById('highlights');
+    if (!reel) return;
+    let x0 = null, y0 = null;
+    reel.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    reel.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      x0 = null;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) this.setState(s => ({ hl: (s.hl + (dx < 0 ? 1 : 3)) % 4 }));
+    }, { passive: true });
+  }
+  initViewer() {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('section[id^="c0"] img').forEach(im => {
+      im.style.cursor = 'zoom-in';
+      im.addEventListener('click', (e) => { e.preventDefault(); this.openViewer(im.currentSrc || im.src, im.alt); });
+    });
+  }
+  openViewer(src, alt) {
+    if (this.viewer) return;
+    const wrap = document.createElement('div');
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-modal', 'true');
+    wrap.setAttribute('aria-label', 'Image viewer');
+    wrap.style.cssText = 'position:fixed; inset:0; z-index:95; background:#141110; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none;';
+    const img = document.createElement('img');
+    img.src = src; img.alt = alt || '';
+    img.style.cssText = 'position:absolute; top:50%; left:50%; max-width:100vw; max-height:100vh; transform:translate(-50%,-50%); transform-origin:center center; -webkit-user-drag:none;';
+    const close = document.createElement('button');
+    close.setAttribute('aria-label', 'Close');
+    close.textContent = '✕';
+    close.style.cssText = 'position:absolute; top:calc(env(safe-area-inset-top,0px) + 12px); right:12px; width:46px; height:46px; display:flex; align-items:center; justify-content:center; background:rgba(20,17,14,0.55); color:#F6F4F0; border:1px solid rgba(246,244,240,0.3); border-radius:999px; font:400 15px/1 "Space Mono",monospace; z-index:2;';
+    const hint = document.createElement('p');
+    hint.textContent = this.lang === 'fr' ? 'Pincer pour zoomer · toucher pour fermer' : 'Pinch to zoom · tap to close';
+    hint.style.cssText = 'position:absolute; left:0; right:0; bottom:calc(env(safe-area-inset-bottom,0px) + 16px); margin:0; text-align:center; color:rgba(246,244,240,0.62); font:400 10px/1.6 "Space Mono",monospace; letter-spacing:0.2em; text-transform:uppercase; pointer-events:none;';
+    wrap.appendChild(img); wrap.appendChild(close); wrap.appendChild(hint);
+    document.body.appendChild(wrap);
+    document.body.style.overflow = 'hidden';
+    this.viewer = wrap;
+    let sc = 1, tx = 0, ty = 0, moved = 0, lastTap = 0, base = null;
+    const pts = new Map();
+    const arr = () => Array.from(pts.values());
+    const apply = () => { img.style.transform = 'translate(-50%,-50%) translate(' + tx + 'px,' + ty + 'px) scale(' + sc + ')'; };
+    const dist = () => { const a = arr(); return Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y) || 1; };
+    const mid = () => { const a = arr(); return { x: (a[0].x + a[1].x) / 2, y: (a[0].y + a[1].y) / 2 }; };
+    wrap.addEventListener('pointerdown', (e) => {
+      try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pts.size === 1) moved = 0;
+      if (pts.size === 2) base = { d: dist(), sc: sc, m: mid(), tx: tx, ty: ty };
+    });
+    wrap.addEventListener('pointermove', (e) => {
+      const prev = pts.get(e.pointerId);
+      if (!prev) return;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pts.size >= 2 && base) {
+        sc = Math.min(6, Math.max(1, base.sc * (dist() / base.d)));
+        const m = mid();
+        tx = base.tx + (m.x - base.m.x); ty = base.ty + (m.y - base.m.y);
+        moved = 999; apply();
+      } else if (pts.size === 1 && sc > 1) {
+        tx += e.clientX - prev.x; ty += e.clientY - prev.y;
+        moved += Math.abs(e.clientX - prev.x) + Math.abs(e.clientY - prev.y);
+        apply();
+      } else {
+        moved += Math.abs(e.clientX - prev.x) + Math.abs(e.clientY - prev.y);
+      }
+    });
+    const up = (e) => {
+      pts.delete(e.pointerId);
+      if (pts.size < 2) base = null;
+      if (pts.size) return;
+      if (moved >= 8) return;
+      const now = Date.now();
+      if (now - lastTap < 300) { sc = 1; tx = 0; ty = 0; apply(); lastTap = 0; return; }
+      lastTap = now;
+      setTimeout(() => { if (lastTap === now && sc === 1) this.closeViewer(); }, 300);
+    };
+    wrap.addEventListener('pointerup', up);
+    wrap.addEventListener('pointercancel', up);
+    close.addEventListener('click', (e) => { e.stopPropagation(); this.closeViewer(); });
+    this.viewerKey = (e) => { if (e.key === 'Escape') this.closeViewer(); };
+    window.addEventListener('keydown', this.viewerKey);
+  }
+  closeViewer() {
+    if (!this.viewer) return;
+    this.viewer.remove(); this.viewer = null;
+    document.body.style.overflow = this.state.legal ? 'hidden' : '';
+    if (this.viewerKey) window.removeEventListener('keydown', this.viewerKey);
   }
   initLoupe() {
     if (window.matchMedia('(hover: none)').matches) return;
@@ -605,8 +737,9 @@ class Component extends DCLogic {
     if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onResize);
     cancelAnimationFrame(this.raf);
     if (this.loupe) this.loupe.remove();
+    this.closeViewer();
   }
-  componentDidUpdate() { document.body.style.overflow = this.state.legal ? 'hidden' : ''; this.hlSync(); this.applyLang(); this.measure(); this.applyEnv(); this.compute(true); }
+  componentDidUpdate() { document.body.style.overflow = (this.state.legal || this.viewer) ? 'hidden' : ''; this.hlSync(); this.applyLang(); this.measure(); this.applyEnv(); this.compute(true); }
   applyLang() {
     const fr = this.lang === 'fr';
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -633,6 +766,8 @@ class Component extends DCLogic {
   hex(h) { return [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); }
   applyEnv() {
     this.d.style.setProperty('--timelabel', (this.props.showTimeLabels ?? true) ? 'inline' : 'none');
+    const nav = document.querySelector('nav[aria-label="Chapters"]');
+    if (nav) this.d.style.setProperty('--navh', nav.offsetHeight + 'px');
   }
   measure() {
     const G = { top: '#EDE7DD', c01: '#EDE7DD', c02: '#F0EBE1', c03: '#F6F4F0', c04: '#F6F4F0', c05: '#F1EAD9', c06: '#EADCC8', c07: '#E3D6C4', c08: '#282420', works: '#282420', studio: '#EDE7DD', services: '#241F1B', contact: '#241F1B' };
