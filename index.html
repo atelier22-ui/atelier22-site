@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Atelier 22 — architectural 3D visualisation in Mauritius. Photoreal renders of villas, interiors and landscapes.">
+<meta name="description" content="Atelier 22 — architectural 3D visualisation in Mauritius. Photoreal renders of villas, apartments, interiors and landscapes.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Atelier 22 · 3D architectural visualisation, Mauritius">
-<meta property="og:description" content="Photoreal renders of villas, interiors and landscapes.">
+<meta property="og:description" content="Atelier 22 — architectural 3D visualisation in Mauritius. Photoreal renders of villas, apartments, interiors and landscapes.">
 <meta property="og:url" content="https://atelier22ltd.com/">
 <meta property="og:image" content="https://atelier22ltd.com/export-assets/living.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,7 +30,56 @@
     img { display: block; }
     ::selection { background: #E85C24; color: #F6F4F0; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    :root { --e-out: cubic-bezier(0.23,1,0.32,1); --e-io: cubic-bezier(0.77,0,0.175,1); }
+    a { -webkit-tap-highlight-color: transparent; }
+    [data-navrow] a, [data-navstrip] a, footer a, #contact a, [data-hlgo] { display: inline-block; transition: transform 160ms var(--e-out), color 140ms ease; }
+    [data-navrow] a:active, [data-navstrip] a:active, footer a:active, #contact a:active, [data-hlgo]:active { transform: scale(0.97); }
+    [data-card] { transition: transform 200ms var(--e-out); }
+    [data-card]:active { transform: scale(0.993); }
+    @media (hover: hover) and (pointer: fine) {
+      [data-card] img { transition: transform 620ms var(--e-out); }
+      [data-card]:hover img { transform: scale(1.028); }
+    }
+    [data-menu] { opacity: 0; visibility: hidden; transform: translateY(-6px) scale(0.97); transform-origin: top right; transition: opacity 120ms var(--e-out), transform 120ms var(--e-out), visibility 0s 120ms; }
+    [data-menu][data-open="true"] { opacity: 1; visibility: visible; transform: none; transition: opacity 190ms var(--e-out), transform 190ms var(--e-out), visibility 0s; }
+    [data-modal] { transition: opacity 200ms var(--e-out); }
+    [data-modal] > div { transition: opacity 220ms var(--e-out), transform 220ms var(--e-out); }
+    @starting-style { [data-modal] { opacity: 0; } [data-modal] > div { opacity: 0; transform: scale(0.98); } }
+    @media (prefers-reduced-motion: reduce) {
+      [data-menu], [data-menu][data-open="true"] { transform: none; transition-duration: 90ms; }
+      [data-modal] > div { transform: none; }
+      [data-card]:hover img { transform: none; }
+      [data-navbar] { transition: opacity 150ms var(--e-out); }
+      [data-navrow] a:active, [data-navstrip] a:active, footer a:active, #contact a:active, [data-hlgo]:active { transform: none; }
+    }
+    [data-navbar] { transition: transform 260ms var(--e-io), opacity 180ms var(--e-out); }
     [data-navstrip]::-webkit-scrollbar { display: none; }
+    [data-navroot] { transition: transform 260ms var(--e-io); will-change: transform; }
+    [data-navroot][data-hidden="true"] { transform: translateY(-100%); }
+    [data-arrow] { display: inline-block; margin-left: 0.4em; color: #E85C24; }
+    [role="dialog"] a { display: inline-block; transition: transform 160ms var(--e-out), color 140ms ease; }
+    [role="dialog"] a:active { transform: scale(0.97); }
+    [data-reelnav][href="#prev"]:active { transform: translateX(-3px); }
+    [data-reelnav][href="#next"]:active { transform: translateX(3px); }
+    @media (prefers-reduced-motion: reduce) {
+      [role="dialog"] a:active, [data-reelnav]:active { transform: none; }
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      [data-navroot] { background: var(--ground, #EDE7DD) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+      [data-hlpill] { background: rgba(20,17,14,0.9) !important; backdrop-filter: none !important; }
+    }
+    [data-modal][data-out="true"] { opacity: 0; transition-duration: 160ms; }
+    [data-modal][data-out="true"] > div { opacity: 0; transform: scale(0.985); transition-duration: 160ms; }
+    @media (hover: hover) and (pointer: fine) {
+      [data-card] [data-arrow] { transition: transform 200ms var(--e-out); }
+      [data-card]:hover [data-arrow] { transform: translateX(5px); }
+    }
+    @media (hover: none) { [data-reelnav] { display: none !important; } }
+    @media (prefers-reduced-motion: reduce) {
+      [data-navroot][data-hidden="true"] { transform: none; }
+      [data-card]:hover [data-arrow] { transform: none; }
+      video[data-hl] { transition-duration: 220ms !important; }
+    }
     @media (max-width: 940px) {
       [data-navlinks] { display: none !important; }
       [data-langs] { border-left: 0 !important; padding-left: 0 !important; margin-left: 0 !important; }
@@ -40,22 +89,33 @@
       [data-wordmark] { font-size: 14px !important; letter-spacing: 0.13em !important; }
       #highlights { padding-top: var(--navh, 96px) !important; }
       [id] { scroll-margin-top: calc(var(--navh, 96px) + 10px) !important; }
-      [data-hlgo] { padding: 19px 0 !important; background-clip: content-box !important; }
-      section[id^="c0"] { padding-left: 0 !important; padding-right: 0 !important; padding-top: 11vh !important; }
+      [data-hlgo] { padding: 19px 0 !important; }
+      section[id^="c0"], section[id^="ap"] { padding-left: 0 !important; padding-right: 0 !important; padding-top: 11vh !important; }
       section[id^="c0"] > div,
       section[id^="c0"] > p,
-      section[id^="c0"] > figure > figcaption { box-sizing: border-box !important; padding-left: 20px !important; padding-right: 20px !important; }
-      section[id^="c0"] > figure { width: 100% !important; max-width: none !important; justify-self: stretch !important; margin-left: 0 !important; margin-right: 0 !important; }
-      #c03 figure > span[aria-hidden] { display: none !important; }
+      section[id^="c0"] > figure > figcaption,
+      section[id^="ap"] > div,
+      section[id^="ap"] > p,
+      section[id^="ap"] > figure > figcaption,
+      section[id^="ap"] > figure > input { box-sizing: border-box !important; padding-left: 20px !important; padding-right: 20px !important; }
+      section[id^="c0"] > figure,
+      section[id^="ap"] > figure { width: 100% !important; max-width: none !important; justify-self: stretch !important; margin-left: 0 !important; margin-right: 0 !important; }
+      #c03 figure > span[aria-hidden], #ap05 figure > span[aria-hidden] { display: none !important; }
       #c05 h2 { white-space: normal !important; text-wrap: balance; }
       #studio, #works, #services, #contact { padding-top: 13vh !important; }
       #contact a, footer a { display: inline-block; padding: 9px 0; }
       [role="dialog"] > div { padding: 24px 20px !important; }
     }
+    @media (max-width: 640px) {
+      [data-hlpill] { display: none !important; }
+    }
+    @media (max-width: 1060px) {
+      [data-portrait] { grid-template-columns: minmax(0,560px) !important; }
+    }
   </style>
 </helmet>
 <div style="font-family:'Space Mono',monospace; color:var(--ink,#282420);">
-  <nav aria-label="Chapters" style="position:fixed; top:0; left:0; right:0; z-index:60; background:var(--ground,#EDE7DD); border-bottom:1px solid var(--line,rgba(40,36,32,0.16)); color:var(--ink,#282420);">
+  <nav data-navroot="1" data-hidden="false" aria-label="Chapters" style="position:fixed; top:0; left:0; right:0; z-index:60; background:color-mix(in srgb, var(--ground,#EDE7DD) 88%, transparent); backdrop-filter:blur(16px) saturate(150%); -webkit-backdrop-filter:blur(16px) saturate(150%); border-bottom:1px solid var(--line,rgba(40,36,32,0.16)); color:var(--ink,#282420);">
     <div data-navrow="1" style="display:flex; align-items:center; justify-content:space-between; gap:18px; padding:8px clamp(20px,4.5vw,64px);">
     <a href="#top" onClick="{{ goTop }}" aria-label="Atelier 22 · top of page" style="display:flex; align-items:center; gap:14px; flex:none;">
       <span style="display:inline-block; position:relative;">
@@ -64,25 +124,28 @@
       </span>
       <span data-wordmark="1" style="font-family:'Jost',sans-serif; font-weight:300; font-size:17px; letter-spacing:0.16em; text-transform:uppercase; white-space:nowrap;">Atelier <span style="color:#E85C24;">22</span></span>
     </a>
-    <div style="display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase;">
-      <div data-navlinks="1" style="display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); white-space:nowrap;">
+    <div style="display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;">
+      <div data-navlinks="1" style="position:relative; display:flex; flex-wrap:nowrap; justify-content:flex-end; align-items:center; gap:10px clamp(10px,1.5vw,20px); white-space:nowrap;">
       <a data-nav="studio" href="#studio">Studio</a>
       <span onMouseEnter="{{ projEnter }}" onMouseLeave="{{ projLeave }}" style="position:relative; display:inline-block;">
         <a data-nav="works" href="#works" onClick="{{ projToggle }}" aria-haspopup="true" aria-expanded="{{ projOpenStr }}" title="Project index">PROJECT<span aria-hidden="true" style="display:inline-block; margin-left:6px; font-size:8px; opacity:0.65;">▾</span></a>
-        <sc-if value="{{ projOpen }}" hint-placeholder-val="{{ false }}">
-          <span style="position:absolute; top:100%; right:-10px; padding-top:12px; display:block; z-index:70;">
+        <span data-menu="1" data-open="{{ projOpenStr }}" style="position:absolute; top:100%; right:-10px; padding-top:12px; display:block; z-index:70;">
             <span style="display:block; min-width:320px; background:var(--ground,#EDE7DD); border:1px solid var(--line,rgba(40,36,32,0.16)); box-shadow:0 24px 60px rgba(30,26,22,0.22); padding:6px 0;">
-              <a href="#c01" onClick="{{ projGo }}" style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:13px 18px;" style-hover="background:rgba(232,92,36,0.07);">
+              <a href="villa-mar-azul.html" style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:13px 18px;" style-hover="background:rgba(232,92,36,0.07);">
                 <span style="font-weight:700;">Villa Mar Azul</span>
-                <span data-i18n="ddVilla" style="opacity:0.6; font-size:10.5px;">Private villa · Mauritius · 2026</span>
+                <span data-i18n="ddVilla" style="opacity:0.6; font-size:11px;">Private villa · Mauritius · 2026</span>
               </a>
-              <a data-i18n="ddIndex" href="#works" onClick="{{ projGo }}" style="display:block; padding:12px 18px; border-top:1px solid var(--line,rgba(40,36,32,0.16)); opacity:0.66; font-size:10.5px;" style-hover="opacity:1;">Full index →</a>
+              <a href="soleia-residence.html" style="display:flex; justify-content:space-between; align-items:baseline; gap:24px; padding:13px 18px; border-top:1px solid var(--line,rgba(40,36,32,0.16));" style-hover="background:rgba(232,92,36,0.07);">
+                <span style="font-weight:700;">Soleia Residence</span>
+                <span data-i18n="ddSoleia" style="opacity:0.6; font-size:11px;">Apartments · Mauritius · 2026</span>
+              </a>
+              <a data-i18n="ddIndex" href="#works" onClick="{{ projGo }}" style="display:block; padding:12px 18px; border-top:1px solid var(--line,rgba(40,36,32,0.16)); opacity:0.66; font-size:11px;" style-hover="opacity:1;">Full index →</a>
             </span>
           </span>
-        </sc-if>
       </span>
       <a data-nav="services" href="#services">Services</a>
       <a data-nav="contact" href="#contact">Contact</a>
+      <span data-navbar="1" aria-hidden="true" style="position:absolute; left:0; bottom:-9px; width:1px; height:2px; background:#E85C24; opacity:0; transform:scaleX(0); transform-origin:left center; pointer-events:none;"></span>
       </div>
       <span data-langs="1" style="display:flex; align-items:center; gap:10px; margin-left:4px; padding-left:14px; border-left:1px solid var(--line,rgba(40,36,32,0.16));">
         <a data-lang-btn="en" href="#top" onClick="{{ pickLang }}" aria-label="English" style="font-weight:700;">EN</a>
@@ -90,194 +153,139 @@
       </span>
     </div>
     </div>
-    <div data-navstrip="1" style="display:none; align-items:stretch; overflow-x:auto; border-top:1px solid var(--line,rgba(40,36,32,0.16)); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; scrollbar-width:none;">
+    <div data-navstrip="1" style="position:relative; display:none; align-items:stretch; overflow-x:auto; border-top:1px solid var(--line,rgba(40,36,32,0.16)); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; scrollbar-width:none;">
       <a data-nav="studio" href="#studio" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Studio</a>
       <a data-nav="works" href="#works" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Project</a>
       <a data-nav="services" href="#services" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Services</a>
       <a data-nav="contact" href="#contact" style="flex:1 0 auto; text-align:center; padding:14px 16px; white-space:nowrap;">Contact</a>
+      <span data-navbar="1" aria-hidden="true" style="position:absolute; left:0; bottom:0; width:1px; height:2px; background:#E85C24; opacity:0; transform:scaleX(0); transform-origin:left center; pointer-events:none;"></span>
     </div>
+    <span data-progress="1" aria-hidden="true" style="position:absolute; left:0; right:0; bottom:-1px; height:1px; background:#E85C24; transform:scaleX(0); transform-origin:left center; pointer-events:none;"></span>
   </nav>
 
+  <div data-langfade="1">
   <section id="highlights" data-screen-label="Highlights" style="padding:0;">
     <div style="position:relative; width:100%; aspect-ratio:16/9; max-height:100vh; overflow:hidden; background:#1E1A16;">
-      <video data-hl="0" src="export-assets/hl-approach.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp0 }}; transition:opacity 0.8s;"></video>
-      <video data-hl="1" src="export-assets/hl-arrival.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp1 }}; transition:opacity 0.8s;"></video>
-      <video data-hl="2" src="export-assets/hl-coffee.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp2 }}; transition:opacity 0.8s;"></video>
-      <video data-hl="3" src="export-assets/hl-pool.webm" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp3 }}; transition:opacity 0.8s;"></video>
-      <a href="#prev" onClick="{{ hlPrev }}" aria-label="Previous highlight" style="position:absolute; left:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0;" style-hover="opacity:1; background:linear-gradient(to right, rgba(20,17,14,0.35), rgba(20,17,14,0));">←</a>
-      <a href="#next" onClick="{{ hlNext }}" aria-label="Next highlight" style="position:absolute; right:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0;" style-hover="opacity:1; background:linear-gradient(to left, rgba(20,17,14,0.35), rgba(20,17,14,0));">→</a>
-      <div style="position:absolute; left:50%; bottom:22px; transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:10px; padding:9px 14px; background:rgba(20,17,14,0.42); backdrop-filter:blur(6px); border-radius:999px;">
-        <a href="#hl0" data-hlgo="0" onClick="{{ hlGo }}" aria-label="Highlight 1" style="display:block; width:{{ hlW0 }}; height:6px; border-radius:999px; background:{{ hlBg0 }}; transition:width 0.35s, background 0.35s;"></a>
-        <a href="#hl1" data-hlgo="1" onClick="{{ hlGo }}" aria-label="Highlight 2" style="display:block; width:{{ hlW1 }}; height:6px; border-radius:999px; background:{{ hlBg1 }}; transition:width 0.35s, background 0.35s;"></a>
-        <a href="#hl2" data-hlgo="2" onClick="{{ hlGo }}" aria-label="Highlight 3" style="display:block; width:{{ hlW2 }}; height:6px; border-radius:999px; background:{{ hlBg2 }}; transition:width 0.35s, background 0.35s;"></a>
-        <a href="#hl3" data-hlgo="3" onClick="{{ hlGo }}" aria-label="Highlight 4" style="display:block; width:{{ hlW3 }}; height:6px; border-radius:999px; background:{{ hlBg3 }}; transition:width 0.35s, background 0.35s;"></a>
+      <video data-hl="0" src="export-assets/hl-1-dog.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="auto" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp0 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="1" src="export-assets/hl-2-kitchen.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="metadata" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp1 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="2" src="export-assets/hl-3-teabreak.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="metadata" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp2 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="3" src="export-assets/hl-4-timelapse.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="metadata" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp3 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="4" src="export-assets/hl-5-couple.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="metadata" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp4 }}; transition:opacity 0.8s;"></video>
+      <video data-hl="5" src="export-assets/hl-6-pool.mp4" muted="{{ true }}" playsInline="{{ true }}" preload="metadata" onEnded="{{ hlEnded }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:{{ hlOp5 }}; transition:opacity 0.8s;"></video>
+      <a href="{{ hlHref }}" data-hlopen="1" aria-label="Open this project" style="position:absolute; left:clamp(16px,8vw,72px); right:clamp(16px,8vw,72px); top:0; bottom:clamp(52px,11vw,100px); z-index:2; display:flex; align-items:flex-end; justify-content:flex-end;">
+        <span style="display:inline-flex; align-items:center; gap:clamp(7px,1.6vw,12px); padding:clamp(6px,1.2vw,9px) clamp(10px,2vw,16px); background:rgba(20,17,14,0.42); backdrop-filter:blur(6px); border-radius:999px; color:#F6F4F0; font-size:clamp(8px,1.5vw,11px); letter-spacing:0.16em; text-transform:uppercase; transition:background 200ms var(--e-out);"><span data-i18n="hlOpen" style="opacity:0.72;">View project</span><span style="font-weight:700;">{{ hlProj }}</span><span aria-hidden="true" style="opacity:0.72;">↗</span></span>
+      </a>
+      <a href="#prev" data-reelnav="1" onClick="{{ hlPrev }}" aria-label="Previous highlight" style="position:absolute; left:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0; transition:opacity 180ms var(--e-out), background 180ms var(--e-out), transform 140ms var(--e-out);" style-hover="opacity:1; background:linear-gradient(to right, rgba(20,17,14,0.35), rgba(20,17,14,0));">←</a>
+      <a href="#next" data-reelnav="1" onClick="{{ hlNext }}" aria-label="Next highlight" style="position:absolute; right:0; top:0; bottom:0; width:72px; z-index:3; display:flex; align-items:center; justify-content:center; color:#F6F4F0; font-size:20px; opacity:0; transition:opacity 180ms var(--e-out), background 180ms var(--e-out), transform 140ms var(--e-out);" style-hover="opacity:1; background:linear-gradient(to left, rgba(20,17,14,0.35), rgba(20,17,14,0));">→</a>
+      <div data-hlpill="1" style="position:absolute; left:50%; bottom:clamp(10px,2.2vw,22px); transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:clamp(6px,1.4vw,10px); padding:clamp(5px,1.1vw,9px) clamp(9px,1.8vw,14px); background:rgba(20,17,14,0.42); backdrop-filter:blur(6px); border-radius:999px;">
+        <a href="#hl0" data-hlgo="0" onClick="{{ hlGo }}" aria-label="Highlight 1" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg0 }}; transform:scaleX({{ hlS0 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
+        <a href="#hl1" data-hlgo="1" onClick="{{ hlGo }}" aria-label="Highlight 2" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg1 }}; transform:scaleX({{ hlS1 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
+        <a href="#hl2" data-hlgo="2" onClick="{{ hlGo }}" aria-label="Highlight 3" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg2 }}; transform:scaleX({{ hlS2 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
+        <a href="#hl3" data-hlgo="3" onClick="{{ hlGo }}" aria-label="Highlight 4" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg3 }}; transform:scaleX({{ hlS3 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
+        <a href="#hl4" data-hlgo="4" onClick="{{ hlGo }}" aria-label="Highlight 5" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg4 }}; transform:scaleX({{ hlS4 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
+        <a href="#hl5" data-hlgo="5" onClick="{{ hlGo }}" aria-label="Highlight 6" style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px);"><span style="display:block; width:clamp(14px,3vw,26px); height:clamp(4px,0.8vw,6px); border-radius:999px; background:{{ hlBg5 }}; transform:scaleX({{ hlS5 }}); transform-origin:center; transition:transform 200ms cubic-bezier(0.23,1,0.32,1), background 200ms ease;"></span></a>
       </div>
-      <div style="position:absolute; left:clamp(20px,4.5vw,64px); bottom:22px; z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5);">
-        <p style="margin:0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.75;">
-          <span data-i18n="hl1" style="display:{{ hlD0 }};">Animation · exterior approach</span>
-          <span data-i18n="hl2" style="display:{{ hlD1 }};">Animation · arrival scene</span>
-          <span data-i18n="hl3" style="display:{{ hlD2 }};">Animation · interior scene</span>
-          <span data-i18n="hl4" style="display:{{ hlD3 }};">Animation · pool scene</span>
+      <div style="position:absolute; left:clamp(20px,4.5vw,64px); bottom:clamp(10px,2.2vw,22px); z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5);">
+        <p style="margin:0; position:relative; min-height:14px; font-size:clamp(8px,1.5vw,11px); letter-spacing:0.16em; text-transform:uppercase; opacity:0.75;">
+          <span data-i18n="hl3" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF0 }}; transition:opacity 420ms ease;">Animation · garden scene</span>
+          <span data-i18n="hl5" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF1 }}; transition:opacity 420ms ease;">Animation · kitchen scene</span>
+          <span data-i18n="hl6" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF2 }}; transition:opacity 420ms ease;">Animation · tea break</span>
+          <span data-i18n="hl1" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF3 }}; transition:opacity 420ms ease;">Animation · exterior, one day</span>
+          <span data-i18n="hl2" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF4 }}; transition:opacity 420ms ease;">Animation · arrival scene</span>
+          <span data-i18n="hl7" style="position:absolute; left:0; top:0; white-space:nowrap; opacity:{{ hlF5 }}; transition:opacity 420ms ease;">Animation · pool scene</span>
         </p>
       </div>
-      <span style="position:absolute; right:clamp(20px,4.5vw,64px); bottom:22px; z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5); font-size:13px; letter-spacing:0.14em; opacity:0.85;">{{ hlCounter }}</span>
+      <span style="position:absolute; right:clamp(20px,4.5vw,64px); bottom:clamp(10px,2.2vw,22px); z-index:3; color:#F6F4F0; text-shadow:0 1px 14px rgba(20,17,14,0.5); font-size:clamp(8px,1.5vw,11px); letter-spacing:0.16em; opacity:0.85;">{{ hlCounter }}</span>
     </div>
   </section>
 
   <header id="top" data-screen-label="Opening" style="padding:56px 0 0;">
-    <p data-i18n="heroTag" style="margin:0 clamp(20px,4.5vw,64px) 2.5vh; font-size:13px; letter-spacing:0.22em; text-transform:uppercase;">3D visualisation studio · Mauritius</p>
-    <h1 aria-label="Atelier 22" style="margin:0; padding:0 clamp(20px,4.5vw,64px); font-family:'Jost',sans-serif; font-weight:200; letter-spacing:0.02em; line-height:1; font-size:clamp(2.6rem,9.5vw,11rem); white-space:nowrap;">ATELIER <span style="color:#DB5820;">22</span></h1>
-    <p data-i18n="heroPitch" style="margin:3.5vh clamp(20px,4.5vw,64px) 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:38em;">We craft photorealistic imagery for architects, developers and property professionals. Still images, animation, 3D models and presentation design, each made to show a project at its best</p>
+    <p data-rise="1" data-i18n="heroTag" style="margin:0 clamp(20px,4.5vw,64px) 2.5vh; font-size:13px; letter-spacing:0.22em; text-transform:uppercase;">3D visualisation studio · Mauritius</p>
+    <h1 data-rise="clip" aria-label="Atelier 22" style="margin:0; padding:0 clamp(20px,4.5vw,64px); font-family:'Jost',sans-serif; font-weight:200; letter-spacing:0.02em; line-height:1; font-size:clamp(2.6rem,9.5vw,11rem); white-space:nowrap;">ATELIER <span style="color:#DB5820;">22</span></h1>
+    <p data-rise="1" data-i18n="heroPitch" style="margin:3.5vh clamp(20px,4.5vw,64px) 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:38em;">We craft photorealistic imagery for architects, developers and property professionals. Still images, animation, 3D models and presentation design, each made to show a project at its best.</p>
   </header>
 
-  <section id="studio" data-screen-label="Studio" style="padding:16vh clamp(20px,4.5vw,64px) 6vh; scroll-margin-top:72px;">
-    <div style="width:min(300px,38vw); height:1px; background:#E85C24;"></div>
-    <p data-i18n="studioEyebrow" style="margin:4.5vh 0 0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Atelier 22 Ltd · Mauritius</p>
-    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Studio</h2>
-    <p data-i18n="studioLead" style="margin:6vh 0 0; max-width:32em; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.35rem,2.6vw,2.4rem); line-height:1.4; letter-spacing:0.01em; text-wrap:pretty;">Atelier22 Ltd is a visualisation studio founded in 2026 by a team trained in architecture and urbanism, driven by a shared passion for design and digital craftsmanship.</p>
-    <div style="margin-top:7vh; max-width:1120px;">
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+  <section id="studio" data-screen-label="Studio" style="padding:11vh clamp(20px,4.5vw,64px) 5vh; scroll-margin-top:72px;">
+    <div data-rise="1" style="width:min(300px,38vw); height:1px; background:#E85C24;"></div>
+    <p data-rise="1" data-i18n="studioEyebrow" style="margin:3vh 0 0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Atelier 22 Ltd · Mauritius</p>
+    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;" data-rise="clip">Studio</h2>
+    <p data-rise="1" data-i18n="studioLead" style="margin:3.5vh 0 0; max-width:32em; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.1rem,2.3vw,2.1rem); line-height:1.35; letter-spacing:0.01em; text-wrap:pretty;">Atelier22 Ltd is a visualisation studio founded in 2026 by a team trained in architecture and urbanism, driven by a shared passion for design and digital craftsmanship.</p>
+    <div style="margin-top:4.5vh; max-width:1120px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:4px 56px; padding:16px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 data-i18n="rh2" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our background</h3>
-        <p data-i18n="rb2" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Architecture and urbanism. We understand plan, sections and elevation to generate an image of the design vision</p>
+        <p data-i18n="rb2" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Architecture and urbanism. We understand plan, sections and elevation to generate an image of the design vision.</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:4px 56px; padding:16px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 data-i18n="rh3" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our starting point</h3>
-        <p data-i18n="rb3" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">A 3D model, 2D drawings, or a brief of what you want to see. We tailor the image to your requirement.</p>
+        <p data-i18n="rb3" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">A 3D model, 2D drawings, or a brief of what you want to see. We create the image according to your requirements.</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:4px 56px; padding:16px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 data-i18n="rh4" style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Our approach</h3>
         <p data-i18n="rb4" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">We agree with you on the scenes, the angles, the lighting, the materiality, the atmosphere and post-production to bring the image to life.</p>
       </div>
     </div>
   </section>
 
-  <section id="c01" data-screen-label="01 Interior visualisation" style="padding-top:13vh; scroll-margin-top:72px;">
-    <div style="padding:0 clamp(20px,4.5vw,64px) 4.5vh;">
-      <p data-i18n="pjK" style="margin:0 0 4.5vh; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Villa Mar Azul · private villa, Mauritius</p>
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="t01" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior</span></p>
-      <h2 data-i18n="h01" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Interiors clients can step into</h2>
-    </div>
-    <img src="export-assets/living.jpg" alt="Dining room at first light beneath the vaulted timber roof, table laid for breakfast, courtyard glazing folded open." loading="eager" style="width:100%; height:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px 48px; flex-wrap:wrap; padding:16px clamp(20px,4.5vw,64px) 0;">
-      <p data-i18n="s01" style="margin:0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Dining table · vaulted timber roof · low warm light</p>
-      <p data-i18n="b01" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">We dress every scene with the traces of daily life: a breakfast mid-served, chairs pulled slightly out of line, soft morning light under the vaulted roof. These imperfections are deliberate. They make an image more realistic</p>
-    </div>
-  </section>
-
-  <section id="c02" data-screen-label="02 Exterior visualisation" style="padding:18vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
-    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">02</span><span data-i18n="t02" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Exterior</span></p>
-      <h2 data-i18n="h02" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Detail that sets the scene</h2>
-      <p data-i18n="b02" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Every element here is placed with intent: fallen leaves and frangipani flowers on the tiles, shoes left at the door, Le Morne rising across the water. This is how we build realism, layering small signs of life until a render reads like a photograph.</p>
-    </div>
-    <figure style="margin:0; justify-self:end; width:min(100%,620px);">
-      <img src="export-assets/entrance.jpg" alt="Entrance court seen through a timber claustra screen, dining terrace and sea beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption data-i18n="s02" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Entrance court · timber claustra · morning sun</figcaption>
-    </figure>
-  </section>
-
-  <section id="c03" data-screen-label="03 Landscape and planting" style="padding:20vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
-    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span data-i18n="t03" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Outdoor living</span></p>
-      <h2 data-i18n="h03" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Vegetation with real depth</h2>
-      <p data-i18n="b03" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">We grow our gardens blade by blade: grasses of varied height and texture, wildflowers breaking through, fallen frangipani scattered where the wind would leave them. Landscape treated with the same care as the architecture.</p>
-    </div>
-    <figure style="margin:0; position:relative; justify-self:end; width:min(100%,620px);">
-      <span aria-hidden="true" style="position:absolute; top:-24px; left:-18px; right:34px; bottom:38px; border:1px solid var(--line,rgba(40,36,32,0.16)); pointer-events:none;"></span>
-      <img src="export-assets/hammack.jpg" alt="Garden pavilion at mid-morning: a hanging chair on the terrace, frangipani in flower, the bedroom open behind sliding glazing." loading="lazy" decoding="async" style="width:100%; height:auto; position:relative;">
-      <figcaption data-i18n="s03" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Garden pavilion · bright sky</figcaption>
-    </figure>
-  </section>
-
-  <section id="c04" data-screen-label="04 Views that sell the site" style="padding:20vh 0 0 clamp(20px,4.5vw,64px); scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
-    <div style="padding:0 clamp(20px,4.5vw,64px) 2vh 0;">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span data-i18n="t04" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior–exterior</span></p>
-      <h2 data-i18n="h04" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Texture down to the sheets</h2>
-      <p data-i18n="b04" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Look closely at the bed: creased linen, the weight of a folded blanket, fabric that catches the light the way real cotton does. We obsess over these textures because they are what separates a render from a photograph.</p>
-    </div>
-    <figure style="margin:0; justify-self:end; width:min(100%,620px);">
-      <img src="export-assets/bedroom-04.jpg" alt="Bedroom opening to the pool terrace, the sea and Le Morne beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption data-i18n="s04" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Bedroom · pool terrace · sea and mountain</figcaption>
-    </figure>
-  </section>
-
-  <section id="c05" data-screen-label="05 Water and staging" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:flex; flex-direction:column; align-items:flex-start;">
-    <div style="width:100%;">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="t05" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Pool &amp; courtyard</span></p>
-      <h2 data-i18n="h05" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.5rem,5.9vw,6.8rem); line-height:1.02; letter-spacing:0.01em; white-space:nowrap;">Water that behaves like water</h2>
-    </div>
-    <figure style="margin:6vh 0 0; align-self:stretch; width:100%;">
-      <img src="export-assets/pool.jpg" alt="Courtyard pool at high sun: palms along the wall, a woman on a float, the kitchen pavilion open beyond." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption style="margin:16px 0 0; display:flex; justify-content:space-between; align-items:flex-start; gap:20px 48px; flex-wrap:wrap;">
-        <span data-i18n="s05" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Courtyard pool · palms · high sun</span>
-        <span data-i18n="b05" style="font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Her float sends ripples out across the pool, breaking the sunlight into caustics on the tiles below — this is the kind of unscripted detail that turns a render into something a client will believe.</span>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section id="c06" data-screen-label="06 Coming home" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
-    <figure style="margin:0; justify-self:start; width:min(100%,560px);">
-      <img src="export-assets/garage.jpg" alt="Arrival court in the afternoon: timber garage door, a couple beside a parked car." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption data-i18n="s06" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Arrival court · timber garage door · long shadows</figcaption>
-    </figure>
-    <div style="padding-bottom:2vh;">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="t06" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Entourage</span></p>
-      <h2 data-i18n="h06" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Entourage that fills the frame</h2>
-      <p data-i18n="b06" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Figures caught mid-conversation, a car parked slightly off-square, volumetric cloud built for the hour rather than dropped in. Populating a scene is where most renders fail. We treat people, vehicles and sky as part of the composition, not as afterthoughts.</p>
-    </div>
-  </section>
-
-  <section id="c07" data-screen-label="07 Slow rhythm" style="padding:20vh clamp(20px,4.5vw,64px) 0 0; scroll-margin-top:72px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr)); gap:6vh clamp(28px,5vw,90px); align-items:end;">
-    <figure style="margin:0; justify-self:start; width:min(100%,620px);">
-      <img src="export-assets/sofa.jpg" alt="Living room at sunset: sofa and guitar by full-height glazing, palms against an amber sky." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption data-i18n="s07" style="margin:12px 0 0; padding-left:clamp(20px,4.5vw,64px); font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Living room · guitar · sunset through palms</figcaption>
-    </figure>
-    <div style="padding:0 0 2vh clamp(20px,4.5vw,64px);">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">07</span><span data-i18n="t07" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Interior · dusk</span></p>
-      <h2 data-i18n="h07" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Light tuned to the hour</h2>
-      <p data-i18n="b07" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">A guitar left against the glazing, a candle lit, a magazine open on the table. From one model we light any hour you need, then fill the room with the objects of someone who actually lives there. Same geometry, entirely different mood.</p>
-    </div>
-  </section>
-
-  <section id="c08" data-screen-label="08 Atmosphere in detail" style="padding:24vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px; display:flex; flex-direction:column; align-items:center;">
-    <div style="width:min(100%,560px);">
-      <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">08</span><span data-i18n="t08" style="margin-left:16px; opacity:0.72; display:var(--timelabel,inline);">Detail · atmosphere</span></p>
-      <h2 data-i18n="h08" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em; text-wrap:balance;">Materials that hold up close</h2>
-    </div>
-    <figure style="margin:6vh 0 0; width:min(100%,560px);">
-      <img src="export-assets/bathroom.jpg" alt="Bathroom at dusk: a freestanding bath before a steamed window of palms and evening sky." loading="lazy" decoding="async" style="width:100%; height:auto;">
-      <figcaption data-i18n="s08" style="margin:12px 0 0; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Bathroom · framed landscape · last light</figcaption>
-    </figure>
-    <p data-i18n="b08" style="width:min(100%,560px); margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em;">Steam rises faintly off the water and settles on the glass, condensation breaking the reflection just enough. Low light is the hardest test of a material, so we push the close-up detail furthest here. Nothing in the frame is generic.</p>
-  </section>
-
-  <section id="works" data-screen-label="Selected works" style="padding:24vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
-    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">PROJECT</p>
-    <h2 data-i18n="worksTitle" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Selected works</h2>
-    <div style="margin-top:7vh; max-width:1120px;">
-      <a href="#c01" style="display:flex; justify-content:space-between; align-items:baseline; gap:12px 48px; flex-wrap:wrap; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
-        <span style="font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.6rem,3.4vw,2.9rem); line-height:1.1; letter-spacing:0.01em;">Villa Mar Azul</span>
-        <span data-i18n="worksMeta1" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Private villa · Mauritius · 2026 · 8 images</span>
+  <section id="works" data-screen-label="Projects" style="padding:22vh clamp(20px,4.5vw,64px) 12vh; scroll-margin-top:72px;">
+    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;" data-rise="1">PROJECT</p>
+    <h2 data-rise="clip" data-i18n="worksTitle" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Selected works</h2>
+    <p data-rise="1" data-i18n="pickLead" style="margin:4.5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Two projects, each on its own page.</p>
+    <div style="margin-top:7vh; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr)); gap:7vh clamp(28px,5vw,72px); max-width:1400px;">
+      <a href="villa-mar-azul.html" data-card="1" style="display:block;">
+        <figure style="margin:0;">
+          <span style="display:block; overflow:hidden;"><img data-rvi="0" src="export-assets/living.jpg" alt="Villa Mar Azul: dining room at first light beneath the vaulted timber roof." loading="lazy" decoding="async" style="width:100%; height:auto;"></span>
+          <figcaption style="margin:18px 0 0; display:flex; justify-content:space-between; align-items:baseline; gap:8px 24px; flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.5rem,3vw,2.4rem); line-height:1.1; letter-spacing:0.01em;">Villa Mar Azul<span data-arrow="1" aria-hidden="true">→</span></span>
+            <span data-i18n="worksMeta1" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Private villa · Mauritius · 2026 · 8 images</span>
+          </figcaption>
+        </figure>
+      </a>
+      <a href="soleia-residence.html" data-card="1" style="display:block;">
+        <figure style="margin:0;">
+          <span style="display:block; overflow:hidden;"><img data-rvi="1" src="export-assets/ap-exterior.jpg" alt="Soleia Residence: three-storey apartment building seen from the street, mountains beyond." loading="lazy" decoding="async" style="width:100%; height:auto;"></span>
+          <figcaption style="margin:18px 0 0; display:flex; justify-content:space-between; align-items:baseline; gap:8px 24px; flex-wrap:wrap;">
+            <span style="font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.5rem,3vw,2.4rem); line-height:1.1; letter-spacing:0.01em;">Soleia Residence<span data-arrow="1" aria-hidden="true">→</span></span>
+            <span data-i18n="worksMeta2" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Apartments · Mauritius · 2026 · 11 images</span>
+          </figcaption>
+        </figure>
       </a>
     </div>
   </section>
 
   <section id="services" data-screen-label="Services" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
-    <p data-i18n="svcEyebrow" style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">What we do</p>
-    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Services</h2>
-    <p data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Six services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
+    <p data-rise="1" data-i18n="svcEyebrow" style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">What we do</p>
+    <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;" data-rise="clip">Services</h2>
+    <p data-rise="1" data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Seven services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
     <div style="margin-top:7vh; max-width:1120px;">
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="svc1h" style="margin-left:16px; opacity:0.66;">Still imagery</span></h3>
-        <p data-i18n="svc1b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Exterior and interior views, built from your model and crafted for the real orientation, climate and hour of the site to your requirements.</p>
+        <div>
+          <p data-i18n="svc1b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Exterior and interior views, built from your model and crafted for the real orientation, climate and time of day at the site, to your requirements.</p>
+          <figure style="margin:34px 0 0;">
+            <img src="export-assets/svc-01-still.jpg" alt="Living room of a Soleia Residence apartment at last light, balcony open to the sea." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:12px 0 0; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.72;"><span data-i18n="svcEx" style="color:#E85C24;">Example</span><span data-i18n="svc1x" style="opacity:0.7;"> · Soleia Residence · living room at last light</span></figcaption>
+          </figure>
+        </div>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">02</span><span data-i18n="svc2h" style="margin-left:16px; opacity:0.66;">Post-production</span></h3>
-        <p data-i18n="svc2b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Atmosphere, entourage and colour grading. Files delivered at print resolution and web-ready, no further work needed on your side.</p>
+        <div>
+          <p data-i18n="svc2b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Atmosphere, entourage and colour grading. Files delivered at print resolution and web-ready, no further work needed on your side.</p>
+          <figure style="margin:34px 0 0;">
+            <img src="export-assets/svc-02-post.jpg" alt="The same living room in daylight, a couple on the sofa, lagoon and mountains beyond." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:12px 0 0; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.72;"><span data-i18n="svcEx" style="color:#E85C24;">Example</span><span data-i18n="svc2x" style="opacity:0.7;"> · the same view, graded and lived in</span></figcaption>
+          </figure>
+        </div>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span data-i18n="svc3h" style="margin-left:16px; opacity:0.66;">Presentation design</span></h3>
-        <p data-i18n="svc3b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Boards, decks and layouts, composed so the images hold their weight in front of an investor or a buyer.</p>
+        <div>
+          <p data-i18n="svc3b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Boards, decks and layouts, composed so the images hold their weight in front of an investor or a buyer.</p>
+          <figure style="margin:34px 0 0;">
+            <img src="export-assets/svc-03-board.jpg" alt="Soleia Residence A1 presentation board: street elevation, four hours of one day, and two finish options." loading="lazy" decoding="async" style="display:block; width:100%; height:auto; border:1px solid var(--line,rgba(40,36,32,0.16));">
+            <figcaption style="margin:12px 0 0; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.72;"><span data-i18n="svcEx" style="color:#E85C24;">Example</span><span data-i18n="svc3x" style="opacity:0.7;"> · Soleia Residence · presentation board A1</span></figcaption>
+          </figure>
+        </div>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span data-i18n="svc4h" style="margin-left:16px; opacity:0.66;">3D modelling</span></h3>
@@ -287,22 +295,28 @@
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span data-i18n="svc6h" style="margin-left:16px; opacity:0.66;">Virtual tour / virtual reality</span></h3>
         <p data-i18n="svc6b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">360° panoramas and walkthroughs built from the same model, viewed in a browser or a headset. Clients move through the project at their own pace, before anything is built.</p>
       </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="svc7h" style="margin-left:16px; opacity:0.66;">Cinematic rendering</span></h3>
+        <p data-i18n="svc7b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Short films built from the same model: camera moves, light changing over the sequence, cut and graded to a finished piece.</p>
+      </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
-        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="svc5h" style="margin-left:16px; opacity:0.66;">Websites</span></h3>
-        <p data-i18n="svc5b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Project and studio sites designed and built around the imagery, so that your work is seen the way it was built.</p>
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">07</span><span data-i18n="svc8h" style="margin-left:16px; opacity:0.66;">Illustrated floor plans</span></h3>
+        <p data-i18n="svc8b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Furnished, textured plans drawn for sales material, so a buyer reads the layout without reading a drawing.</p>
       </div>
     </div>
   </section>
 
   <section id="contact" data-screen-label="Contact" style="padding: 22vh clamp(20px,4.5vw,64px) 9vh; scroll-margin-top: 72px; position: relative">
-    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">Contact</p>
-    <h2 data-i18n="ctTitle" style="margin:0.4em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.2rem,5.6vw,6rem); line-height:1.05; letter-spacing:0.01em; max-width:14em; text-wrap:balance;">Send us a model or drawings and a brief</h2>
-    <div style="margin-top:7vh; display:flex; flex-wrap:wrap; align-items:baseline; gap:14px clamp(32px,6vw,96px); font-size:13px; letter-spacing:0.08em;">
-      <a href="mailto:atelier22ltd@gmail.com">ATELIER22LTD@gmail.com</a>
-      <a href="https://wa.me/23057535794" target="_blank" rel="noopener">WhatsApp +230 5753 5794</a>
-      <a href="https://www.instagram.com/atelier.22ltd" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=61592841971286" target="_blank" rel="noopener">Facebook</a>
-      <span data-i18n="ctLoc" style="opacity:0.7;">Mauritius · GMT+4</span>
+    <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;" data-rise="1">Contact</p>
+    <h2 data-rise="clip" data-i18n="ctTitle" style="margin:0.4em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.2rem,5.6vw,6rem); line-height:1.05; letter-spacing:0.01em; max-width:14em; text-wrap:balance;">Send us a model or drawings and a brief</h2>
+    <div style="margin-top:7vh; display:flex; flex-direction:column; align-items:flex-start; gap:28px;">
+      <a href="mailto:atelier22ltd@gmail.com" style="font-family:'Jost',sans-serif; font-weight:300; font-size:clamp(1.3rem,3.4vw,2.5rem); line-height:1.1; letter-spacing:0.01em; overflow-wrap:anywhere;">ATELIER22LTD@gmail.com</a>
+      <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:12px clamp(28px,5vw,72px); font-size:12px; letter-spacing:0.12em;">
+        <a href="https://wa.me/23057535794" target="_blank" rel="noopener">WhatsApp +230 5753 5794</a>
+        <a href="https://www.instagram.com/atelier.22ltd" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61592841971286" target="_blank" rel="noopener">Facebook</a>
+        <span data-i18n="ctLoc" style="opacity:0.7;">Mauritius · GMT+4</span>
+      </div>
     </div>
     
     <footer style="margin-top:8vh; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:10px 32px; border-top:1px solid var(--line,rgba(40,36,32,0.16)); padding-top:18px; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6;">
@@ -314,10 +328,12 @@
       </span>
       <span>© 2026</span>
     </footer>
-  <img src="assets/logo-ink-light.png" alt="Atelier 22 · architecture / 3D visualization" style="height: 205px; position: static; padding-left: 0px; padding-right: 0px; width: 266px; object-fit: fill"></section>
+  <img src="assets/logo-ink-light.png" alt="Atelier 22 · architecture / 3D visualization" style="height: 205px; position: static; padding-left: 0px; padding-right: 0px; width: 266px; object-fit: contain; object-position: left center"></section>
+
+  </div>
 
   <sc-if value="{{ legalOpen }}" hint-placeholder-val="{{ false }}">
-    <div role="dialog" aria-modal="true" aria-label="Legal notices" onClick="{{ closeLegal }}" style="position:fixed; inset:0; z-index:90; background:rgba(30,26,22,0.62); display:flex; align-items:center; justify-content:center; padding:4vh clamp(12px,3vw,40px); box-sizing:border-box;">
+    <div role="dialog" data-modal="1" data-out="{{ legalOutStr }}" aria-modal="true" aria-label="Legal notices" onClick="{{ closeLegal }}" style="position:fixed; inset:0; z-index:90; background:rgba(30,26,22,0.62); display:flex; align-items:center; justify-content:center; padding:4vh clamp(12px,3vw,40px); box-sizing:border-box;">
       <div onClick="{{ eatClick }}" style="background:#F6F4F0; color:#282420; width:min(100%,800px); max-height:88vh; overflow:auto; border:1px solid rgba(40,36,32,0.2); box-shadow:0 40px 120px rgba(0,0,0,0.35); padding:clamp(24px,5vw,60px); box-sizing:border-box;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px;">
           <img src="assets/logo-ink-dark.png" alt="Atelier 22" style="height:44px; width:auto;">
@@ -469,11 +485,11 @@
   &quot;showTimeLabels&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Chapters&quot;}
 }">
 class Component extends DCLogic {
-  state = { projOpen: false, legal: null, hl: 0 };
+  state = { projOpen: false, legal: null, legalOut: false, hl: 0 };
   hlSync() {
     document.querySelectorAll('video[data-hl]').forEach(v => {
       const i = +v.getAttribute('data-hl');
-      if (i === this.state.hl) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+      if (i === this.state.hl && this.hlVis !== false) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
       else if (!v.paused) v.pause();
     });
   }
@@ -483,7 +499,7 @@ class Component extends DCLogic {
     pjK: 'Villa Mar Azul · villa privée, Maurice',
     t01: 'Intérieur', h01: 'Des intérieurs où l\u2019on entre déjà',
     s01: 'Table à manger · charpente voûtée · lumière chaude et basse',
-    b01: 'Nous habillons chaque scène des traces du quotidien\u00a0: un petit-déjeuner en cours, des chaises légèrement décalées, une lumière douce du matin sous la charpente voûtée. Ces imperfections sont voulues. Elles rendent l\u2019image plus réaliste',
+    b01: 'Nous habillons chaque scène des traces du quotidien\u00a0: un petit-déjeuner en cours, des chaises légèrement décalées, une lumière douce du matin sous la charpente voûtée. Ces imperfections sont voulues. Elles rendent l\u2019image plus vraie.',
     t02: 'Extérieur', h02: 'Le détail qui plante le décor',
     s02: 'Cour d\u2019entrée · claustra de bois · soleil du matin',
     b02: 'Chaque élément est placé avec intention\u00a0: des feuilles et des fleurs de frangipanier tombées sur le carrelage, des chaussures laissées à la porte, Le Morne qui se dresse au-delà de l\u2019eau. C\u2019est ainsi que nous construisons le réalisme, en superposant de petits signes de vie jusqu\u2019à ce qu\u2019un rendu se lise comme une photographie.',
@@ -505,40 +521,88 @@ class Component extends DCLogic {
     t08: 'Détail · atmosphère', h08: 'Des matières qui tiennent de près',
     s08: 'Salle de bains · paysage cadré · dernière lumière',
     b08: 'Une vapeur ténue s\u2019élève de l\u2019eau et se dépose sur le vitrage, la condensation brisant le reflet juste assez. La lumière basse est l\u2019épreuve la plus dure pour une matière, alors nous poussons ici le détail au plus près. Rien dans le cadre n\u2019est générique.',
+    pjK2: 'Soleia Residence · appartements, Rose Belle',
+    at01: 'Extérieur · après-midi', ah01: 'Un bâtiment montré dans sa vraie rue',
+    as01: 'Élévation sur rue · claustras perforés · chaîne de montagnes au fond',
+    ab01: 'Rien n\u2019a été rangé autour de ce bâtiment\u00a0: les toits voisins, les réservoirs d\u2019eau, les champs de canne qui montent vers les collines. Un projet se lit comme constructible quand le contexte est celui où le client se tiendra vraiment.',
+    at02: 'Cuisine · matin', ah02: 'Des pièces mesurées, pas flattées',
+    as02: 'Cuisine et salle à manger · façades aubergine · soleil du matin',
+    ab02: 'Un appartement est ce qu\u2019il y a de plus difficile à photographier honnêtement. Nous gardons la caméra à hauteur d\u2019œil et loin du grand angle, pour que la pièce à l\u2019écran soit celle qui sera construite.',
+    at03: 'Finitions', ah03: 'Des finitions que l\u2019on peut choisir',
+    as03: 'Cuisine · carreaux émaillés verts · façades en noyer',
+    ab03: 'L\u2019émail réfléchit, le marbre veine, le fil du bois suit la porte pour laquelle il a été coupé. Nous modélisons le cahier de finitions plutôt que de l\u2019approcher, afin qu\u2019un promoteur puisse valider carrelage et mobilier depuis l\u2019image.',
+    at04: 'Séjour · midi', ah04: 'La vie, occupée à quelque chose de précis',
+    as04: 'Cuisine ouverte · dîner commencé · lumière dure de midi',
+    ab04: 'Des oignons à moitié émincés, la vapeur qui monte de la casserole, un couteau encore en main. Les personnages sont placés pour être occupés plutôt que posés\u00a0: cela donne son échelle à la pièce et empêche le cadre de paraître mis en scène.',
+    at05: 'Détail', ah05: 'Des gros plans qui tiennent',
+    as05: 'Table basse · bois à bord naturel · objets du matin',
+    ab05: 'Des clés jetées dans une coupelle, un café qui refroidit, des lunettes pliées sur la table. Nous construisons ces plans rapprochés en pleine résolution, car ils portent une brochure ou un fil social aussi bien qu\u2019une vue large.',
+    at06: 'Séjour · balcon', ah06: 'L\u2019orientation, c\u2019est l\u2019argument',
+    as06: 'Salon · balcon · lagon et montagnes',
+    ab06: 'Chaque logement se vend sur son orientation. Les angles solaires sont réglés depuis les coordonnées du site et le moment de la journée, si bien que la lumière qui traverse ce sol est celle que cet appartement recevra.',
+    at07: 'Couleur', ah07: 'La couleur essayée avant d\u2019être mélangée',
+    as07: 'Salon · plâtre bleu profond · ombre du claustra',
+    ab07: 'Le claustra imprime son motif sur le mur à mesure que l\u2019après-midi tourne. Essayer une couleur ici coûte un après-midi de calcul\u00a0; l\u2019essayer sur le chantier coûte une remise en peinture.',
+    at08: 'Intérieur · heure dorée', ah08: 'L\u2019heure choisie, pas subie',
+    as08: 'Séjour et salle à manger · baies coulissantes · soleil sur la canne',
+    ab08: 'Le soleil bas rase le sol, le rideau reste où la brise l\u2019a laissé, le lagon n\u2019est qu\u2019une ligne fine au-delà des champs. À partir d\u2019une seule maquette, nous livrons n\u2019importe quelle heure du jour, et chacune vend une autre partie du plan.',
+    at09: 'Chambre · soir', ah09: 'Des textiles qui se tiennent',
+    as09: 'Chevet · lin et plâtre · lumière de lampe',
+    ab09: 'Du lin froissé, une montre laissée sur la table, un plâtre qui accroche la dernière lumière du jour. Le tissu et l\u2019enduit sont là où un rendu se trahit d\u2019habitude\u00a0: c\u2019est donc là que nous prenons le temps de bien faire.',
+    at10: 'Salle de bains', ah10: 'De petites pièces qui respirent encore',
+    as10: 'Salle de bains · grès · vasque de pierre',
+    ab10: 'Une salle de bains est une boîte étroite et sans indulgence pour le rendu. Nous la cadrons de face, gardons un objectif honnête et laissons l\u2019unique fenêtre porter la lumière, pour que la pièce se lise calme plutôt qu\u2019exiguë.',
+    at11: 'Nuit', ah11: 'Le même plan une fois la nuit tombée',
+    as11: 'Chambre et bureau · nuit · lampe et lumière de bureau',
+    ab11: 'Une maquette, deux moments de la journée. Les vues de nuit sont ce qui fait approuver une conception d\u2019éclairage\u00a0: des flaques chaudes près du lit, une lampe plus froide sur le bureau, la ville qui tient quelques lumières à travers la vallée.',
     worksTitle: 'Projets choisis',
     worksMeta1: 'Villa privée · Maurice · 2026 · 8 images',
+    worksMeta2: 'Appartements · Maurice · 2026 · 11 images',
+    ddSoleia: 'Appartements · Maurice · 2026',
     studioEyebrow: 'Atelier 22 Ltd · Maurice',
     studioLead: 'Atelier22 Ltd est un studio de visualisation fondé en 2026 par une équipe formée à l\u2019architecture et à l\u2019urbanisme, animée par une passion commune pour le design et l\u2019artisanat numérique.',
     rh2: 'Notre parcours',
-    rb2: 'De l\u2019architecture et de l\u2019urbanisme. Nous comprenons les plans, les coupes et les élévations pour produire une image de la vision du projet',
+    rb2: 'De l\u2019architecture et de l\u2019urbanisme. Nous comprenons les plans, les coupes et les élévations pour produire une image de la vision du projet.',
     rh3: 'Notre point de départ',
-    rb3: 'Un modèle 3D, des dessins 2D ou un brief de ce que vous voulez voir. Nous adaptons l\u2019image à vos exigences.',
+    rb3: 'Un modèle 3D, des dessins 2D ou un brief de ce que vous voulez voir. Nous créons l\u2019image selon vos exigences.',
     rh4: 'Notre approche',
     rb4: 'Nous validons ensemble les scènes, les angles, la lumière, la matérialité, l\u2019atmosphère et la post-production pour donner vie à l\u2019image.',
+    hlOpen: 'Voir le projet',
     svcEyebrow: 'Ce que nous faisons',
+    svcEx: 'Exemple',
+    svc1x: ' · Soleia Residence · séjour à la dernière lumière',
+    svc2x: ' · la même vue, étalonnée et habitée',
+    svc3x: ' · Soleia Residence · planche de présentation A1',
     svc6h: 'Visite virtuelle / réalité virtuelle',
     svc6b: 'Panoramas 360° et visites immersives construits à partir de la même maquette, consultables dans un navigateur ou un casque. Le client parcourt le projet à son rythme, avant même que rien ne soit construit.',
-    svcIntro: 'Six services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
+    svcIntro: 'Sept services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
     svc1h: 'Images fixes',
-    svc1b: 'Vues extérieures et intérieures, construites à partir de votre maquette et éclairées selon l\u2019orientation, le climat et l\u2019heure réels du site, selon vos exigences.',
+    svc1b: 'Vues extérieures et intérieures, construites à partir de votre maquette et éclairées selon l\u2019orientation, le climat et le moment de la journée sur le site, selon vos exigences.',
     svc2h: 'Post-production',
     svc2b: 'Ambiance, entourage et étalonnage. Fichiers livrés en résolution d\u2019impression et prêts pour le web, sans travail supplémentaire de votre côté.',
     svc4h: 'Modélisation 3D',
     svc4b: 'Maquettes SketchUp propres et prêtes au rendu, construites à partir de vos fichiers AutoCAD ou de plans PDF.',
-    svc5h: 'Sites web',
-    svc5b: 'Sites de projet et de studio conçus et développés autour des images, pour que votre travail soit vu tel qu\u2019il a été construit.',
+    svc7h: 'Rendu cinématique',
+    svc7b: 'Films courts construits à partir de la même maquette : mouvements de caméra, lumière qui évolue au fil de la séquence, montés et étalonnés jusqu\u2019à la pièce finie.',
+    svc8h: 'Plans illustrés',
+    svc8b: 'Plans meublés et texturés, dessinés pour les supports de vente, afin qu\u2019un acheteur lise l\u2019agencement sans lire un plan technique.',
     svc3h: 'Design de présentation',
     svc3b: 'Planches, présentations et mises en page, composées pour que les images gardent tout leur poids devant un investisseur ou un acheteur.',
     ctTitle: 'Envoyez-nous une maquette ou des plans et un brief',
     ctLoc: 'Maurice · GMT+4',
     ftLine: 'Atelier 22 Ltd · Visualisation architecturale 3D',
     hlEyebrow: 'Temps forts',
-    hl1: 'Animation · approche extérieure',
+    hl1: 'Animation · extérieur, une journée',
     hl2: 'Animation · scène d\u2019arrivée',
-    hl3: 'Animation · scène intérieure',
-    hl4: 'Animation · piscine',
+    hl3: 'Animation · scène de jardin',
+    hl5: 'Animation · cuisine',
+    hl6: 'Animation · pause thé',
+    hl7: 'Animation · piscine',
     ddVilla: 'Villa privée · Maurice · 2026',
     ddIndex: 'Index complet →',
+    allProj: 'Tous les projets',
+    nextLabel: 'Projet suivant',
+    pickLead: 'Deux projets, chacun sur sa propre page.',
     ftCopy: 'Droits d\u2019auteur',
     ftDisc: 'Avertissement',
     ftTerms: 'Conditions générales'
@@ -550,23 +614,33 @@ class Component extends DCLogic {
       hlOp1: this.state.hl === 1 ? 1 : 0,
       hlOp2: this.state.hl === 2 ? 1 : 0,
       hlOp3: this.state.hl === 3 ? 1 : 0,
-      hlD0: this.state.hl === 0 ? 'inline' : 'none',
-      hlD1: this.state.hl === 1 ? 'inline' : 'none',
-      hlD2: this.state.hl === 2 ? 'inline' : 'none',
-      hlD3: this.state.hl === 3 ? 'inline' : 'none',
-      hlCounter: '0' + (this.state.hl + 1) + ' / 04',
-      hlW0: this.state.hl === 0 ? '26px' : '6px',
-      hlW1: this.state.hl === 1 ? '26px' : '6px',
-      hlW2: this.state.hl === 2 ? '26px' : '6px',
-      hlW3: this.state.hl === 3 ? '26px' : '6px',
+      hlOp4: this.state.hl === 4 ? 1 : 0,
+      hlOp5: this.state.hl === 5 ? 1 : 0,
+      hlCounter: '0' + (this.state.hl + 1) + ' / 06',
+      hlHref: [1, 3, 4].indexOf(this.state.hl) > -1 ? 'soleia-residence.html' : 'villa-mar-azul.html',
+      hlProj: [1, 3, 4].indexOf(this.state.hl) > -1 ? 'Soleia Residence' : 'Villa Mar Azul',
+      hlS0: this.state.hl === 0 ? 1 : 0.231,
+      hlS1: this.state.hl === 1 ? 1 : 0.231,
+      hlS2: this.state.hl === 2 ? 1 : 0.231,
+      hlS3: this.state.hl === 3 ? 1 : 0.231,
+      hlS4: this.state.hl === 4 ? 1 : 0.231,
+      hlS5: this.state.hl === 5 ? 1 : 0.231,
+      hlF0: this.state.hl === 0 ? 1 : 0,
+      hlF1: this.state.hl === 1 ? 1 : 0,
+      hlF2: this.state.hl === 2 ? 1 : 0,
+      hlF3: this.state.hl === 3 ? 1 : 0,
+      hlF4: this.state.hl === 4 ? 1 : 0,
+      hlF5: this.state.hl === 5 ? 1 : 0,
       hlBg0: this.state.hl === 0 ? '#E85C24' : 'rgba(246,244,240,0.55)',
       hlBg1: this.state.hl === 1 ? '#E85C24' : 'rgba(246,244,240,0.55)',
       hlBg2: this.state.hl === 2 ? '#E85C24' : 'rgba(246,244,240,0.55)',
       hlBg3: this.state.hl === 3 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlBg4: this.state.hl === 4 ? '#E85C24' : 'rgba(246,244,240,0.55)',
+      hlBg5: this.state.hl === 5 ? '#E85C24' : 'rgba(246,244,240,0.55)',
       hlGo: (e) => { e.preventDefault(); this.setState({ hl: +e.currentTarget.getAttribute('data-hlgo') }); },
-      hlPrev: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 3) % 4 })); },
-      hlNext: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 1) % 4 })); },
-      hlEnded: (e) => { if (+e.currentTarget.getAttribute('data-hl') === this.state.hl) { const v = e.currentTarget; this.setState(s => ({ hl: (s.hl + 1) % 4 }), () => { v.currentTime = 0; }); } },
+      hlPrev: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 5) % 6 })); },
+      hlNext: (e) => { e.preventDefault(); this.setState(s => ({ hl: (s.hl + 1) % 6 })); },
+      hlEnded: (e) => { if (+e.currentTarget.getAttribute('data-hl') === this.state.hl) { const v = e.currentTarget; this.setState(s => ({ hl: (s.hl + 1) % 6 }), () => { v.currentTime = 0; }); } },
       projOpen: this.state.projOpen,
       projOpenStr: this.state.projOpen ? 'true' : 'false',
       projEnter: () => { if (hoverable()) this.setState({ projOpen: true }); },
@@ -574,17 +648,36 @@ class Component extends DCLogic {
       projToggle: (e) => { e.preventDefault(); this.setState(s => ({ projOpen: !s.projOpen })); },
       projGo: () => this.setState({ projOpen: false }),
       legalOpen: !!this.state.legal,
+      legalOutStr: this.state.legalOut ? 'true' : 'false',
       dCopy: this.state.legal === 'copyright' ? 'block' : 'none',
       dDisc: this.state.legal === 'disclaimer' ? 'block' : 'none',
       dTerms: this.state.legal === 'terms' ? 'block' : 'none',
       openLegal: (e) => { e.preventDefault(); this.setState({ legal: e.currentTarget.getAttribute('data-legal') }); },
-      closeLegal: (e) => { e.preventDefault(); this.setState({ legal: null }); },
+      closeLegal: (e) => {
+        e.preventDefault();
+        if (this.state.legalOut) return;
+        if (this.mq.matches) { this.setState({ legal: null, legalOut: false }); return; }
+        this.setState({ legalOut: true });
+        clearTimeout(this.legalT);
+        this.legalT = setTimeout(() => this.setState({ legal: null, legalOut: false }), 165);
+      },
       eatClick: (e) => e.stopPropagation(),
       goTop: (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       pickLang: (e) => {
         e.preventDefault();
         const l = e.currentTarget.getAttribute('data-lang-btn');
-        if (l && l !== this.lang) { this.lang = l; this.applyLang(); this.measure(); this.compute(true); }
+        if (!l || l === this.lang) return;
+        // Swap synchronously. State must never hang off an animation promise: a second
+        // click cancels the first, and a cancelled promise would land the stale language.
+        this.lang = l; this.navDirty = true; this.applyLang(); this.measure(); this.compute(true);
+        if (this.mq.matches) return;
+        const root = document.querySelector('[data-langfade]');
+        if (!root) return;
+        // Decoration only. The text has already changed, so it settles in rather than
+        // crossfading; in-flight fades are cancelled so rapid clicks retarget.
+        root.getAnimations().forEach(a => { try { a.cancel(); } catch (err) {} });
+        const a = root.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 220, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+        a.finished.then(() => { try { a.cancel(); } catch (err) {} }, () => {});
       }
     };
   }
@@ -594,21 +687,47 @@ class Component extends DCLogic {
     this.cur = null; this.raf = 0; this.lastActive = undefined;
     this.enCache = {}; this.enTitle = {};
     try { this.lang = localStorage.getItem('a22-lang') || 'en'; } catch (e) { this.lang = 'en'; }
-    this.onScroll = () => this.compute(false);
-    this.onResize = () => { this.measure(); this.applyEnv(); this.compute(true); };
+    this.hlVis = true;
+    this.onScroll = () => { if (this.sRaf) return; this.sRaf = requestAnimationFrame(() => { this.sRaf = 0; this.compute(false); this.navScroll(); if (this.hlCheck) this.hlCheck(); }); };
+    this.onResize = () => { this.navDirty = true; this.measure(); this.applyEnv(); this.compute(true); };
     setTimeout(() => this.hlSync(), 300);
     this.onKey = (e) => { if (e.key === 'Escape') this.setState({ projOpen: false, legal: null }); };
     window.addEventListener('keydown', this.onKey);
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onResize);
     if (this.mq.addEventListener) this.mq.addEventListener('change', this.onResize);
-    Array.from(document.images).forEach(im => { if (!im.complete) im.addEventListener('load', this.onResize, { once: true }); });
+    this.softResize = () => { clearTimeout(this.srT); this.srT = setTimeout(this.onResize, 140); };
+    Array.from(document.images).forEach(im => { if (!im.complete) im.addEventListener('load', this.softResize, { once: true }); });
+    this.primeLang();
     this.applyLang();
     this.measure(); this.applyEnv(); this.compute(true);
     setTimeout(this.onResize, 600);
     this.initLoupe();
     this.initViewer();
+    this.initReveal();
+    this.navScroll();
+    this.initReel();
     this.initSwipe();
+    this.initReelVis();
+  }
+  // Off-screen video keeps decoding frames and steals them from the reveal
+  // animations further down the page. Pause it once the reel leaves the viewport.
+  initReelVis() {
+    const box = document.getElementById('highlights');
+    if (!box) return;
+    this.hlVis = true;
+    // Derived from the scroll handler that already runs. An IntersectionObserver
+    // can deliver a zero-height entry before the 16/9 box lays out, which would
+    // latch the reel paused forever.
+    this.hlCheck = () => {
+      const r = box.getBoundingClientRect();
+      if (!r.height) return;
+      const vis = r.bottom > 0 && r.top < window.innerHeight;
+      if (vis === this.hlVis) return;
+      this.hlVis = vis;
+      this.hlSync();
+    };
+    this.hlCheck();
   }
   initSwipe() {
     const reel = document.getElementById('highlights');
@@ -619,12 +738,12 @@ class Component extends DCLogic {
       if (x0 === null) return;
       const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
       x0 = null;
-      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) this.setState(s => ({ hl: (s.hl + (dx < 0 ? 1 : 3)) % 4 }));
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) this.setState(s => ({ hl: (s.hl + (dx < 0 ? 1 : 5)) % 6 }));
     }, { passive: true });
   }
   initViewer() {
     if (!window.matchMedia('(hover: none)').matches) return;
-    document.querySelectorAll('section[id^="c0"] img').forEach(im => {
+    document.querySelectorAll('section[id^="c0"] img, section[id^="ap"] img').forEach(im => {
       im.style.cursor = 'zoom-in';
       im.addEventListener('click', (e) => { e.preventDefault(); this.openViewer(im.currentSrc || im.src, im.alt); });
     });
@@ -650,7 +769,11 @@ class Component extends DCLogic {
     document.body.appendChild(wrap);
     document.body.style.overflow = 'hidden';
     this.viewer = wrap;
-    let sc = 1, tx = 0, ty = 0, moved = 0, lastTap = 0, base = null;
+    if (!this.mq.matches) {
+      wrap.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 170, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+      img.animate([{ opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1 }], { duration: 240, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+    }
+    let sc = 1, tx = 0, ty = 0, moved = 0, lastTap = 0, base = null, dy = 0, t0 = 0, damp = 0;
     const pts = new Map();
     const arr = () => Array.from(pts.values());
     const apply = () => { img.style.transform = 'translate(-50%,-50%) translate(' + tx + 'px,' + ty + 'px) scale(' + sc + ')'; };
@@ -659,7 +782,7 @@ class Component extends DCLogic {
     wrap.addEventListener('pointerdown', (e) => {
       try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
       pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (pts.size === 1) moved = 0;
+      if (pts.size === 1) { moved = 0; dy = 0; damp = 0; t0 = Date.now(); }
       if (pts.size === 2) base = { d: dist(), sc: sc, m: mid(), tx: tx, ty: ty };
     });
     wrap.addEventListener('pointermove', (e) => {
@@ -677,12 +800,27 @@ class Component extends DCLogic {
         apply();
       } else {
         moved += Math.abs(e.clientX - prev.x) + Math.abs(e.clientY - prev.y);
+        dy += e.clientY - prev.y;
+        if (Math.abs(dy) > 6) {
+          damp = Math.sign(dy) * Math.pow(Math.abs(dy), 0.86);
+          img.style.translate = '0 ' + damp.toFixed(1) + 'px';
+          wrap.style.background = 'rgba(20,17,14,' + Math.max(0.18, 1 - Math.abs(dy) / 560).toFixed(3) + ')';
+        }
       }
     });
     const up = (e) => {
       pts.delete(e.pointerId);
       if (pts.size < 2) base = null;
       if (pts.size) return;
+      if (sc === 1 && Math.abs(dy) > 6) {
+        const vel = Math.abs(dy) / Math.max(1, Date.now() - t0);
+        if (Math.abs(dy) > 130 || vel > 0.11) { this.closeViewer(damp); return; }
+        img.animate([{ translate: '0 ' + damp.toFixed(1) + 'px' }, { translate: '0 0' }], { duration: 300, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+        img.style.translate = '0 0';
+        wrap.style.background = '#141110';
+        dy = 0; damp = 0;
+        return;
+      }
       if (moved >= 8) return;
       const now = Date.now();
       if (now - lastTap < 300) { sc = 1; tx = 0; ty = 0; apply(); lastTap = 0; return; }
@@ -695,31 +833,45 @@ class Component extends DCLogic {
     this.viewerKey = (e) => { if (e.key === 'Escape') this.closeViewer(); };
     window.addEventListener('keydown', this.viewerKey);
   }
-  closeViewer() {
+  closeViewer(from) {
     if (!this.viewer) return;
-    this.viewer.remove(); this.viewer = null;
+    const w = this.viewer; this.viewer = null;
     document.body.style.overflow = this.state.legal ? 'hidden' : '';
     if (this.viewerKey) window.removeEventListener('keydown', this.viewerKey);
+    if (this.mq.matches) { w.remove(); return; }
+    const im = w.querySelector('img');
+    const fling = typeof from === 'number' && Math.abs(from) > 6;
+    if (im && fling) im.animate([{ translate: '0 ' + from.toFixed(1) + 'px' }, { translate: '0 ' + (from > 0 ? 1 : -1) * Math.round(window.innerHeight * 0.55) + 'px' }], { duration: 210, easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' });
+    else if (im) im.animate([{ scale: 1, opacity: 1 }, { scale: 0.97, opacity: 0 }], { duration: 150, easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' });
+    const a = w.animate([{ opacity: 1 }, { opacity: 0 }], { duration: fling ? 200 : 150, easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' });
+    a.finished.then(() => w.remove(), () => w.remove());
   }
   initLoupe() {
     if (window.matchMedia('(hover: none)').matches) return;
     const L = 190, Z = 2;
     const loupe = document.createElement('div');
     loupe.setAttribute('aria-hidden', 'true');
-    loupe.style.cssText = 'position:fixed; z-index:80; width:' + L + 'px; height:' + L + 'px; border:1px solid rgba(237,231,221,0.9); box-shadow:0 6px 28px rgba(0,0,0,0.35); background-repeat:no-repeat; pointer-events:none; display:none;';
+    loupe.style.cssText = 'position:fixed; left:0; top:0; z-index:80; width:' + L + 'px; height:' + L + 'px; border:1px solid rgba(237,231,221,0.9); box-shadow:0 6px 28px rgba(0,0,0,0.35); background-repeat:no-repeat; pointer-events:none; opacity:0; scale:0.94; translate:-9999px -9999px; transition:opacity 140ms cubic-bezier(0.23,1,0.32,1), scale 140ms cubic-bezier(0.23,1,0.32,1); will-change:translate,opacity;';
     document.body.appendChild(loupe);
     this.loupe = loupe;
+    let lx = 0, ly = 0, cx = 0, cy = 0, lraf = 0, lon = false;
+    const glide = () => {
+      const k = this.mq.matches ? 1 : 0.24;
+      cx += (lx - cx) * k; cy += (ly - cy) * k;
+      loupe.style.translate = cx.toFixed(1) + 'px ' + cy.toFixed(1) + 'px';
+      lraf = (lon || Math.abs(lx - cx) > 0.4 || Math.abs(ly - cy) > 0.4) ? requestAnimationFrame(glide) : 0;
+    };
     const move = (e) => {
       const im = e.currentTarget, r = im.getBoundingClientRect();
-      loupe.style.display = 'block';
-      loupe.style.left = (e.clientX + 18) + 'px';
-      loupe.style.top = (e.clientY + 18) + 'px';
+      lx = e.clientX + 18; ly = e.clientY + 18;
+      if (!lon) { lon = true; cx = lx; cy = ly; loupe.style.translate = cx + 'px ' + cy + 'px'; loupe.style.opacity = '1'; loupe.style.scale = '1'; }
+      if (!lraf) lraf = requestAnimationFrame(glide);
       loupe.style.backgroundImage = 'url("' + im.currentSrc + '")';
       loupe.style.backgroundSize = (r.width * Z) + 'px ' + (r.height * Z) + 'px';
       loupe.style.backgroundPosition = (-((e.clientX - r.left) * Z - L / 2)) + 'px ' + (-((e.clientY - r.top) * Z - L / 2)) + 'px';
     };
-    const hide = () => { loupe.style.display = 'none'; };
-    document.querySelectorAll('section[id^="c0"] img').forEach(im => {
+    const hide = () => { lon = false; loupe.style.opacity = '0'; loupe.style.scale = '0.94'; };
+    document.querySelectorAll('section[id^="c0"] img, section[id^="ap"] img').forEach(im => {
       const attach = () => {
         if (im.naturalWidth >= im.naturalHeight) return;
         im.style.cursor = 'crosshair';
@@ -730,16 +882,185 @@ class Component extends DCLogic {
     });
     this.hideLoupe = hide;
   }
+  sweepPending() {
+    if (this.pendClear) return;
+    const nodes = document.querySelectorAll('[data-rvpend]');
+    if (!nodes.length) { this.pendClear = true; return; }
+    nodes.forEach(el => {
+      if (el.getBoundingClientRect().bottom >= -4) return;
+      el.removeAttribute('data-rvpend');
+      el.getAnimations().forEach(an => { try { an.cancel(); } catch (e) {} });
+      el.style.opacity = ''; el.style.transform = ''; el.style.transformOrigin = ''; el.style.clipPath = '';
+    });
+  }
+  setNav(hidden) {
+    if (!this.navRoot || hidden === this.navHidden) return;
+    this.navHidden = hidden;
+    this.navRoot.setAttribute('data-hidden', hidden ? 'true' : 'false');
+  }
+  navScroll() {
+    const y = Math.max(0, window.scrollY || 0);
+    if (!this.progBar) this.progBar = document.querySelector('[data-progress]');
+    if (this.progBar) {
+      const max = (document.documentElement.scrollHeight - window.innerHeight) || 0;
+      this.progBar.style.transform = 'scaleX(' + (max > 8 ? Math.min(1, y / max) : 0).toFixed(4) + ')';
+    }
+    this.sweepPending();
+    if (!this.navRoot) this.navRoot = document.querySelector('[data-navroot]');
+    if (!this.navRoot) return;
+    const prev = this.lastY == null ? y : this.lastY;
+    this.lastY = y;
+    // Accumulate distance in the current direction: a lazy-load reflow or a 3px
+    // jitter must never flip the bar, so it takes 64px of committed movement.
+    if (y < 560 || this.state.projOpen || this.state.legal) { this.acc = 0; this.setNav(false); return; }
+    const d = y - prev;
+    if (Math.abs(d) < 2) return;
+    if (!this.acc || (this.acc > 0) !== (d > 0)) this.acc = 0;
+    this.acc += d;
+    if (this.acc > 64) { this.acc = 0; this.setNav(true); }
+    else if (this.acc < -64) { this.acc = 0; this.setNav(false); }
+  }
+  initReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    const reduced = this.mq.matches;
+    const EO = 'cubic-bezier(0.23,1,0.32,1)';
+    const imgs = Array.from(document.querySelectorAll('[data-card] img, section[id^="c0"] figure img:not([data-nozoom]), section[id^="ap"] figure img:not([data-nozoom])'))
+      .filter(n => !n.closest('[data-wipe]'));
+    const inClip = new Set(imgs);
+
+    const blocks = [];
+    document.querySelectorAll('#top, #studio, #works, #services, #contact, section[id^="c0"], section[id^="ap"]').forEach(sec => {
+      Array.from(sec.children).forEach(ch => {
+        const kids = Array.from(ch.children);
+        const isRows = ch.tagName === 'DIV' && kids.length >= 3 && kids.every(k => k.tagName === 'DIV');
+        // A head wrapper (eyebrow / title / body) reveals line by line so the title can clip in
+        const isHead = ch.tagName === 'DIV' && kids.length >= 2 && kids.some(k => k.hasAttribute && k.hasAttribute('data-rise'));
+        ((isRows || isHead) ? kids : [ch]).forEach(n => {
+          if (inClip.has(n)) return;
+          if (n.querySelectorAll && Array.from(n.querySelectorAll('img')).some(i => inClip.has(i))) return;
+          blocks.push(n);
+        });
+      });
+    });
+
+    const rules = new Set();
+    blocks.forEach(n => {
+      if (n.offsetHeight > 0 && n.offsetHeight <= 2 && n.offsetWidth > 20 && !n.children.length) rules.add(n);
+    });
+    blocks.forEach(n => {
+      if (rules.has(n) && !reduced) { n.style.transformOrigin = 'left center'; n.style.transform = 'scaleX(0)'; }
+      // opacity only: a pre-set clip-path zeroes the element's own intersection rect,
+      // so the observer would never fire. The keyframes start from the clipped state instead.
+      else n.style.opacity = '0';
+      n.setAttribute('data-rvpend', '1');
+    });
+
+    const bio = new IntersectionObserver((entries) => {
+      const hits = entries.filter(e => e.isIntersecting).map(e => e.target);
+      hits.forEach(el => bio.unobserve(el));
+      hits.sort((a, b) => (a.compareDocumentPosition(b) & 4) ? -1 : 1);
+      hits.forEach((el, i) => {
+        el.removeAttribute('data-rvpend');
+        const rule = rules.has(el);
+        const clip = !rule && !reduced && el.matches('[data-rise="clip"]');
+        const kf = reduced ? [{ opacity: 0 }, { opacity: 1 }]
+          : rule ? [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }]
+          : clip ? [{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }, { clipPath: 'inset(0 0 0 0)', opacity: 1 }]
+          : [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }];
+        const a = el.animate(kf, { duration: reduced ? 220 : (rule || clip ? 560 : 400), delay: Math.min(i, 3) * 45, easing: EO, fill: 'both' });
+        a.finished.then(() => { el.style.opacity = ''; el.style.transform = ''; el.style.transformOrigin = ''; el.style.clipPath = ''; a.cancel(); }, () => {});
+      });
+    }, { rootMargin: '0px 0px -2% 0px', threshold: 0.01 });
+    blocks.forEach(n => bio.observe(n));
+    this.blockIO = bio;
+
+    if (!imgs.length) return;
+    // clip-path zeroes the intersection rect, so images are observed through their unclipped wrapper
+    const groups = new Map();
+    imgs.forEach(n => {
+      if (!reduced) n.style.clipPath = 'inset(0 0 100% 0)';
+      n.style.opacity = '0';
+      n.setAttribute('data-rvpend', '1');
+      const host = n.parentElement || n;
+      if (!groups.has(host)) groups.set(host, []);
+      groups.get(host).push(n);
+    });
+    const iio = new IntersectionObserver((entries) => {
+      const hits = entries.filter(e => e.isIntersecting).map(e => e.target);
+      hits.forEach(h => iio.unobserve(h));
+      let k = 0;
+      hits.forEach(host => {
+        (groups.get(host) || []).forEach(el => {
+          el.removeAttribute('data-rvpend');
+          const kf = reduced ? [{ opacity: 0 }, { opacity: 1 }]
+            : [{ clipPath: 'inset(0 0 100% 0)', opacity: 0 }, { clipPath: 'inset(0 0 0 0)', opacity: 1 }];
+          if (!reduced) el.style.willChange = 'clip-path, opacity';
+          const a = el.animate(kf, { duration: reduced ? 220 : 560, delay: Math.min(k++, 2) * 60, easing: EO, fill: 'both' });
+          a.finished.then(() => { el.style.clipPath = ''; el.style.opacity = ''; el.style.willChange = ''; a.cancel(); }, () => {});
+        });
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.01 });
+    groups.forEach((els, host) => iio.observe(host));
+    this.revealIO = iio;
+  }
+  initReel() {
+    const box = document.querySelector('#highlights > div');
+    const v = box && box.querySelector('video[data-hl="0"]');
+    if (!v) return;
+    let done = false;
+    box.style.opacity = '0';
+    const show = () => {
+      if (done) return;
+      done = true;
+      box.style.opacity = '';
+      box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: this.mq.matches ? 200 : 500, easing: 'cubic-bezier(0.23,1,0.32,1)' });
+    };
+    if (v.readyState >= 2) show();
+    else {
+      v.addEventListener('loadeddata', show, { once: true });
+      v.addEventListener('canplay', show, { once: true });
+      setTimeout(show, 1400);
+    }
+  }
+  syncNavBar(active) {
+    document.querySelectorAll('[data-navbar]').forEach(bar => {
+      const box = bar.parentElement;
+      const el = active ? box.querySelector('[data-nav="' + active + '"]') : null;
+      if (!el || !box.offsetWidth) { bar.style.opacity = '0'; return; }
+      const br = box.getBoundingClientRect(), er = el.getBoundingClientRect();
+      if (!er.width) { bar.style.opacity = '0'; return; }
+      bar.style.opacity = '1';
+      bar.style.transform = 'translateX(' + (er.left - br.left + (box.scrollLeft || 0)).toFixed(1) + 'px) scaleX(' + er.width.toFixed(1) + ')';
+    });
+  }
   componentWillUnmount() {
     window.removeEventListener('keydown', this.onKey);
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
     if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onResize);
     cancelAnimationFrame(this.raf);
+    cancelAnimationFrame(this.sRaf);
+    clearTimeout(this.srT);
+    if (this.revealIO) this.revealIO.disconnect();
+    clearTimeout(this.legalT);
+    if (this.blockIO) this.blockIO.disconnect();
+
     if (this.loupe) this.loupe.remove();
     this.closeViewer();
   }
   componentDidUpdate() { document.body.style.overflow = (this.state.legal || this.viewer) ? 'hidden' : ''; this.hlSync(); this.applyLang(); this.measure(); this.applyEnv(); this.compute(true); }
+  primeLang() {
+    // Capture the authored English before anything can swap it: a lazy cache filled
+    // while French is in the DOM would record French as the original, permanently.
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (!(k in this.enCache)) this.enCache[k] = el.textContent;
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const k = el.getAttribute('data-i18n-title');
+      if (!(k in this.enTitle)) this.enTitle[k] = el.getAttribute('title') || '';
+    });
+  }
   applyLang() {
     const fr = this.lang === 'fr';
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -770,10 +1091,10 @@ class Component extends DCLogic {
     if (nav) this.d.style.setProperty('--navh', nav.offsetHeight + 'px');
   }
   measure() {
-    const G = { top: '#EDE7DD', c01: '#EDE7DD', c02: '#F0EBE1', c03: '#F6F4F0', c04: '#F6F4F0', c05: '#F1EAD9', c06: '#EADCC8', c07: '#E3D6C4', c08: '#282420', works: '#282420', studio: '#EDE7DD', services: '#241F1B', contact: '#241F1B' };
-    const I = { top: '#282420', c01: '#282420', c02: '#282420', c03: '#282420', c04: '#282420', c05: '#282420', c06: '#282420', c07: '#282420', c08: '#EDE7DD', works: '#EDE7DD', studio: '#282420', services: '#EDE7DD', contact: '#EDE7DD' };
+    const G = { top: '#EDE7DD', c01: '#EDE7DD', c02: '#F0EBE1', c03: '#F6F4F0', c04: '#F6F4F0', c05: '#F1EAD9', c06: '#EADCC8', c07: '#E3D6C4', c08: '#282420', ap01: '#EDE7DD', ap02: '#F6F4F0', ap03: '#F6F4F0', ap04: '#F0EBE1', ap05: '#F6F4F0', ap06: '#F1EAD9', ap07: '#F1EAD9', ap08: '#EADCC8', ap09: '#E3D6C4', ap10: '#E3D6C4', ap11: '#282420', works: '#282420', studio: '#EDE7DD', services: '#241F1B', contact: '#241F1B' };
+    const I = { top: '#282420', c01: '#282420', c02: '#282420', c03: '#282420', c04: '#282420', c05: '#282420', c06: '#282420', c07: '#282420', c08: '#EDE7DD', ap01: '#282420', ap02: '#282420', ap03: '#282420', ap04: '#282420', ap05: '#282420', ap06: '#282420', ap07: '#282420', ap08: '#282420', ap09: '#282420', ap10: '#282420', ap11: '#EDE7DD', works: '#EDE7DD', studio: '#282420', services: '#EDE7DD', contact: '#EDE7DD' };
     const HOLD = { c07: 0.92 };
-    const AT = { c08: 0.72 };
+    const AT = { c08: 0.72, ap11: 0.72 };
     this.stops = [];
     for (const id of Object.keys(G)) {
       const el = document.getElementById(id);
@@ -828,6 +1149,11 @@ class Component extends DCLogic {
   setVars() {
     const r = v => Math.round(v);
     const [gr, gg, gb] = this.cur.g, [ir, ig, ib] = this.cur.i;
+    // Custom properties on :root invalidate style for the whole document. The lerp
+    // runs every frame but only lands on a new rounded colour every few frames.
+    const sig = r(gr) + ',' + r(gg) + ',' + r(gb) + '|' + r(ir) + ',' + r(ig) + ',' + r(ib);
+    if (sig === this.varSig) return;
+    this.varSig = sig;
     const dark = (gr + gg + gb) / 3 < 110;
     this.d.style.setProperty('--ground', 'rgb(' + r(gr) + ',' + r(gg) + ',' + r(gb) + ')');
     this.d.style.setProperty('--ink', 'rgb(' + r(ir) + ',' + r(ig) + ',' + r(ib) + ')');
@@ -836,11 +1162,15 @@ class Component extends DCLogic {
     this.d.style.setProperty('--logoB', dark ? '1' : '0');
   }
   spy() {
-    const navIds = ['works', 'studio', 'services', 'contact'];
+    const navIds = Array.from(document.querySelectorAll('[data-nav]')).map(e => e.getAttribute('data-nav'));
     const y = window.scrollY, vh = window.innerHeight;
     let active = null;
     for (const st of this.stops) if (navIds.indexOf(st.id) !== -1 && st.top - vh * 0.45 <= y) active = st.id;
-    if (active === this.lastActive) return;
+    const changed = active !== this.lastActive;
+    if (!changed && !this.navDirty) return;
+    this.navDirty = false;
+    this.syncNavBar(active);
+    if (!changed) return;
     this.lastActive = active;
     document.querySelectorAll('[data-nav]').forEach(el => {
       const on = el.getAttribute('data-nav') === active;
