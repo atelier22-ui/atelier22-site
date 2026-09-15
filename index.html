@@ -229,7 +229,7 @@
   <section id="works" data-screen-label="Projects" style="padding:22vh clamp(20px,4.5vw,64px) 12vh; scroll-margin-top:72px;">
     <p style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;" data-rise="1">PROJECT</p>
     <h2 data-rise="clip" data-i18n="worksTitle" style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;">Selected works</h2>
-    <p data-rise="1" data-i18n="pickLead" style="margin:4.5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Two projects, each on its own page.</p>
+    <p data-rise="1" data-i18n="pickLead" style="margin:4.5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Two featured projects, each on its own page.</p>
     <div style="margin-top:7vh; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr)); gap:7vh clamp(28px,5vw,72px); max-width:1400px;">
       <a href="villa-mar-azul.html" data-card="1" style="display:block;">
         <figure style="margin:0;">
@@ -250,12 +250,19 @@
         </figure>
       </a>
     </div>
+    <div style="margin-top:9vh; max-width:1400px; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+      <p data-i18n="otherLead" style="margin:22px 0 0; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.66;">Also in the studio</p>
+      <a href="#rooftop" data-legal="rooftop" onClick="{{ openLegal }}" style="margin-top:18px; display:flex; justify-content:space-between; align-items:baseline; gap:8px 24px; flex-wrap:wrap; padding-bottom:20px;">
+        <span style="font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.15rem,2vw,1.6rem); line-height:1.15; letter-spacing:0.01em;">Rooftop Ebene<span data-arrow="1" aria-hidden="true">→</span></span>
+        <span data-i18n="rooftopMeta" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; opacity:0.66;">Terrace · Ebene · 2026 · 7 images</span>
+      </a>
+    </div>
   </section>
 
   <section id="services" data-screen-label="Services" style="padding:22vh clamp(20px,4.5vw,64px) 0; scroll-margin-top:72px;">
     <p data-rise="1" data-i18n="svcEyebrow" style="margin:0; font-size:12px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.72;">What we do</p>
     <h2 style="margin:0.32em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(2.5rem,6.2vw,6.8rem); line-height:1.02; letter-spacing:0.01em;" data-rise="clip">Services</h2>
-    <p data-rise="1" data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Seven services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
+    <p data-rise="1" data-i18n="svcIntro" style="margin:5vh 0 0; font-size:13px; line-height:2; letter-spacing:0.015em; max-width:36em;">Nine services, one studio. Everything below is produced in-house, so a project can move from raw CAD to finished images or videos without changing hands.</p>
     <div style="margin-top:7vh; max-width:1120px;">
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span data-i18n="svc1h" style="margin-left:16px; opacity:0.66;">Still imagery</span></h3>
@@ -299,9 +306,17 @@
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span data-i18n="svc7h" style="margin-left:16px; opacity:0.66;">Cinematic rendering</span></h3>
         <p data-i18n="svc7b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Short films built from the same model: camera moves, light changing over the sequence, cut and graded to a finished piece.</p>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
         <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">07</span><span data-i18n="svc8h" style="margin-left:16px; opacity:0.66;">Illustrated floor plans</span></h3>
         <p data-i18n="svc8b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Furnished, textured plans drawn for sales material, so a buyer reads the layout without reading a drawing.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">08</span><span data-i18n="svc9h" style="margin-left:16px; opacity:0.66;">Concept design</span></h3>
+        <p data-i18n="svc9b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Early-stage design studies: massing, layout options and material direction, developed far enough that a client can decide before drawings begin.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:12px 56px; padding:26px 0; border-top:1px solid var(--line,rgba(40,36,32,0.16)); border-bottom:1px solid var(--line,rgba(40,36,32,0.16));">
+        <h3 style="margin:0; font-size:12px; font-weight:400; letter-spacing:0.22em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">09</span><span data-i18n="svc10h" style="margin-left:16px; opacity:0.66;">Landscaping</span></h3>
+        <p data-i18n="svc10b" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em;">Terraces, gardens, pool surrounds and planting, modelled and rendered with the building so the outdoor space reads as part of the scheme.</p>
       </div>
     </div>
   </section>
@@ -334,10 +349,60 @@
 
   <sc-if value="{{ legalOpen }}" hint-placeholder-val="{{ false }}">
     <div role="dialog" data-modal="1" data-out="{{ legalOutStr }}" aria-modal="true" aria-label="Legal notices" onClick="{{ closeLegal }}" style="position:fixed; inset:0; z-index:90; background:rgba(30,26,22,0.62); display:flex; align-items:center; justify-content:center; padding:4vh clamp(12px,3vw,40px); box-sizing:border-box;">
-      <div onClick="{{ eatClick }}" style="background:#F6F4F0; color:#282420; width:min(100%,800px); max-height:88vh; overflow:auto; border:1px solid rgba(40,36,32,0.2); box-shadow:0 40px 120px rgba(0,0,0,0.35); padding:clamp(24px,5vw,60px); box-sizing:border-box;">
+      <div onClick="{{ eatClick }}" style="background:#F6F4F0; color:#282420; width:{{ modalW }}; max-height:88vh; overflow:auto; border:1px solid rgba(40,36,32,0.2); box-shadow:0 40px 120px rgba(0,0,0,0.35); padding:clamp(24px,5vw,60px); box-sizing:border-box;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px;">
           <img src="assets/logo-ink-dark.png" alt="Atelier 22" style="height:44px; width:auto;">
           <a href="#close" onClick="{{ closeLegal }}" aria-label="Close" style="font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase; font-weight:700;">Close ✕</a>
+        </div>
+        <div style="display:{{ dRoof }};">
+          <p style="margin:36px 0 0; font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.55;">Atelier22 ltd · V01RP13092026</p>
+          <h2 style="margin:0.25em 0 0; font-family:'Jost',sans-serif; font-weight:200; font-size:clamp(1.9rem,4.2vw,3.2rem); line-height:1.05; letter-spacing:0.01em;">Rooftop Ebene</h2>
+          <div style="width:110px; height:1px; background:#E85C24; margin:24px 0 28px;"></div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:32px 56px; align-items:start;">
+            <p data-i18n="rfLead" style="margin:0; font-size:13px; line-height:2; letter-spacing:0.015em; text-wrap:pretty;">A rooftop terrace conception in Ebene, developed for a private client. The brief called for a covered outdoor dining and lounge space of roughly 70 square metres, with a timber pergola and canopy framing the mountain outlook and a pendant-lit dining bay at its centre. Seven views, modelled and rendered in-house.</p>
+            <dl style="margin:0; display:grid; grid-template-columns:auto 1fr; gap:10px 22px; font-size:11px; letter-spacing:0.16em; text-transform:uppercase;">
+              <dt style="margin:0; opacity:0.55;">Client</dt><dd style="margin:0;">Private client</dd>
+              <dt style="margin:0; opacity:0.55;">Location</dt><dd style="margin:0;">Ebene, Mauritius</dd>
+              <dt style="margin:0; opacity:0.55;">Typology</dt><dd style="margin:0;">Terrace · 3D modelling &amp; render</dd>
+              <dt style="margin:0; opacity:0.55;">Area</dt><dd style="margin:0;">70 m²</dd>
+              <dt style="margin:0; opacity:0.55;">Status</dt><dd style="margin:0;">Complete</dd>
+              <dt style="margin:0; opacity:0.55;">Date</dt><dd style="margin:0;">14.09.2026</dd>
+            </dl>
+          </div>
+          <div style="margin-top:48px; display:grid; grid-template-columns:1fr; gap:56px;">
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-01.jpg" alt="Rooftop Ebene, view 01: covered dining terrace · evening light." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">01</span><span style="opacity:0.66;">Covered dining terrace · evening light</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-02.jpg" alt="Rooftop Ebene, view 02: terrace at sunset · mountain outlook." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">02</span><span style="opacity:0.66;">Terrace at sunset · mountain outlook</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-03.jpg" alt="Rooftop Ebene, view 03: side elevation · terrace section." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">03</span><span style="opacity:0.66;">Side elevation · terrace section</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-04.jpg" alt="Rooftop Ebene, view 04: front elevation · living and dining." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">04</span><span style="opacity:0.66;">Front elevation · living and dining</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-05.jpg" alt="Rooftop Ebene, view 05: pendant lighting study · dining bay." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">05</span><span style="opacity:0.66;">Pendant lighting study · dining bay</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-06.jpg" alt="Rooftop Ebene, view 06: aerial corner · canopy and pergola." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">06</span><span style="opacity:0.66;">Aerial corner · canopy and pergola</span></figcaption>
+          </figure>
+          <figure style="margin:0;">
+            <img src="export-assets/rooftop-07.jpg" alt="Rooftop Ebene, view 07: terrace elevation · lounge and dining." loading="lazy" decoding="async" style="display:block; width:100%; height:auto;">
+            <figcaption style="margin:10px 0 0; display:flex; gap:12px; align-items:baseline; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;"><span style="color:#E85C24; font-weight:700;">07</span><span style="opacity:0.66;">Terrace elevation · lounge and dining</span></figcaption>
+          </figure>
+          </div>
+          <div style="margin-top:44px; padding-top:20px; border-top:1px solid rgba(40,36,32,0.16); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:12px 28px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;">
+            <span style="color:#E85C24; font-weight:700;">A3 presentation on request</span>
+            <span style="opacity:0.55;">Seven views · 16:9 · 2026</span>
+          </div>
         </div>
         <div style="display:{{ dCopy }};">
           <p style="margin:36px 0 0; font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase; opacity:0.55;">Atelier22 Ltd · V01C03082026</p>
@@ -556,6 +621,14 @@ class Component extends DCLogic {
     as11: 'Chambre et bureau · nuit · lampe et lumière de bureau',
     ab11: 'Une maquette, deux moments de la journée. Les vues de nuit sont ce qui fait approuver une conception d\u2019éclairage\u00a0: des flaques chaudes près du lit, une lampe plus froide sur le bureau, la ville qui tient quelques lumières à travers la vallée.',
     worksTitle: 'Projets choisis',
+    otherLead: 'Aussi au studio',
+    rfLead: 'Une conception de terrasse en toiture à Ebène, développée pour un client privé. Le brief demandait un espace extérieur couvert de repas et de salon d\u2019environ 70 mètres carrés, avec une pergola et une canopée en bois cadrant la vue sur la montagne et une table éclairée par des suspensions en son centre. Sept vues, modélisées et rendues en interne.',
+    svc9h: 'Design de concept',
+    svc9b: 'Études de conception en amont : volumétrie, options de plan et direction des matériaux, poussées assez loin pour qu\u2019un client décide avant le début des plans.',
+    svc10h: 'Aménagement paysager',
+    svc10b: 'Terrasses, jardins, plages de piscine et plantations, modélisés et rendus avec le bâtiment afin que l\u2019espace extérieur se lise comme partie du projet.',
+    rooftopMeta: 'Terrasse · Ebène · 2026 · 7 images',
+    ddRooftop: 'Terrasse · Ebène · 2026',
     worksMeta1: 'Villa privée · Maurice · 2026 · 8 images',
     worksMeta2: 'Appartements · Maurice · 2026 · 11 images',
     ddSoleia: 'Appartements · Maurice · 2026',
@@ -575,7 +648,7 @@ class Component extends DCLogic {
     svc3x: ' · Soleia Residence · planche de présentation A1',
     svc6h: 'Visite virtuelle / réalité virtuelle',
     svc6b: 'Panoramas 360° et visites immersives construits à partir de la même maquette, consultables dans un navigateur ou un casque. Le client parcourt le projet à son rythme, avant même que rien ne soit construit.',
-    svcIntro: 'Sept services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
+    svcIntro: 'Neuf services, un seul studio. Tout ce qui suit est produit en interne, afin qu\u2019un projet passe du fichier CAO brut à des images ou des vidéos finies sans changer de mains.',
     svc1h: 'Images fixes',
     svc1b: 'Vues extérieures et intérieures, construites à partir de votre maquette et éclairées selon l\u2019orientation, le climat et le moment de la journée sur le site, selon vos exigences.',
     svc2h: 'Post-production',
@@ -602,7 +675,7 @@ class Component extends DCLogic {
     ddIndex: 'Index complet →',
     allProj: 'Tous les projets',
     nextLabel: 'Projet suivant',
-    pickLead: 'Deux projets, chacun sur sa propre page.',
+    pickLead: 'Deux projets phares, chacun sur sa propre page.',
     ftCopy: 'Droits d\u2019auteur',
     ftDisc: 'Avertissement',
     ftTerms: 'Conditions générales'
@@ -649,6 +722,8 @@ class Component extends DCLogic {
       projGo: () => this.setState({ projOpen: false }),
       legalOpen: !!this.state.legal,
       legalOutStr: this.state.legalOut ? 'true' : 'false',
+      dRoof: this.state.legal === 'rooftop' ? 'block' : 'none',
+      modalW: this.state.legal === 'rooftop' ? 'min(100%,1520px)' : 'min(100%,800px)',
       dCopy: this.state.legal === 'copyright' ? 'block' : 'none',
       dDisc: this.state.legal === 'disclaimer' ? 'block' : 'none',
       dTerms: this.state.legal === 'terms' ? 'block' : 'none',
